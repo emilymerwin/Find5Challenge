@@ -1,24 +1,25 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-		<link rel = "stylesheet" type="text/css" href="template_assets/css/style_main.css"/>
-		<base target="_parent" />
-		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
-		<script type="text/javascript" src="template_assets/js/fader.js"></script>
-		<!--[if lte IE 9]></script><script language="javascript" type="text/javascript" src="http://alt.coxnewsweb.com/ajc/swf/find_five_challenge/HTML5/template_assets/js/excanvas.js"></script><![endif]-->
-		<script type="text/javascript" src="http://alt.coxnewsweb.com/ajc/swf/find_five_challenge/HTML5/template_assets/js/canvas.text.js"></script>
-		<script type="text/javascript" src="http://alt.coxnewsweb.com/ajc/swf/find_five_challenge/HTML5/template_assets/js/faces/helvetiker-regular-normal.typeface.js"></script>
-		<script type="text/javascript" src="http://alt.coxnewsweb.com/ajc/_projects_and_planning_group/libraries/soundmanager2/script/soundmanager2-nodebug-jsmin.js"></script>
-		<title>AJC Find 5 Challenge</title>
-		<meta content="width=device-width, minimum-scale=1" name="viewport">
-	 
-		<script type="text/javascript">
-		var secs = 45, gameOver = 0, missed = 0, win = 0, sq1 = 0, sq2 = 0, sq3 = 0, sq4 = 0, sq5 = 0;
-		var btnName = "startBtn";
-		var url = window.location.toString();
-		var query_string = url.split("?");
-		var pcred, dingSound, buzzerSound, winSound, loseSound, G_vmlCanvasManager;
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!--<link rel = "stylesheet" type="text/css" href="template_assets/css/style_main.css"/>-->
+<base target="_parent" />
+<link rel="stylesheet" href="http://alt.coxnewsweb.com/ajc/_newsapps/libraries/css/gumby/css/gumby.css" type="text/css"/>
+<script src="http://alt.coxnewsweb.com/ajc/_newsapps/libraries/css/gumby/js/libs/modernizr-2.6.2.min.js"></script>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
+<script type="text/javascript" src="template_assets/js/fader.js"></script>
+<!--[if lte IE 9]></script><script language="javascript" type="text/javascript" src="http://alt.coxnewsweb.com/ajc/swf/find_five_challenge/HTML5/template_assets/js/excanvas.js"></script><![endif]-->
+<script type="text/javascript" src="http://alt.coxnewsweb.com/ajc/swf/find_five_challenge/HTML5/template_assets/js/canvas.text.js"></script>
+<script type="text/javascript" src="http://alt.coxnewsweb.com/ajc/swf/find_five_challenge/HTML5/template_assets/js/faces/helvetiker-regular-normal.typeface.js"></script>
+<script type="text/javascript" src="http://alt.coxnewsweb.com/ajc/_projects_and_planning_group/libraries/soundmanager2/script/soundmanager2-nodebug-jsmin.js"></script>
+<title>Georgia Lottery Find 5 Challenge</title>
+<meta content="width=device-width, minimum-scale=1" name="viewport">
+<script type="text/javascript">
+	var secs = 45, gameOver = 0, missed = 0, win = 0, sq1 = 0, sq2 = 0, sq3 = 0, sq4 = 0, sq5 = 0;
+	var btnName = "startBtn";
+	var url = window.location.toString();
+	var query_string = url.split("?");
+	var pcred, dingSound, buzzerSound, winSound, loseSound, G_vmlCanvasManager;
 	$(window).load(function(){  
 		$.get('http://alt.coxnewsweb.com/ajc/swf/find_five_challenge/HTML5/js_files/FindFive_'+query_string[1]+'.js', function(){
 			//$.preload([orgImg, altImg]);
@@ -31,7 +32,7 @@
 				con.innerHTML += "<br/><span class='pcredit'>Photo credit: "+pcred+"</span>";//if there is a credit deal with it
 			}
 			//resize hit areas to match resized photos for accessatlanta version
-			s1xt = s1xt/1.2;
+			s1xt = s1xt/1.2, 
 			s1yt = s1yt/1.2;
 			s1xb = s1xb/1.2;
 			s1yb = s1yb/1.2;
@@ -52,7 +53,7 @@
 			s5xb = s5xb/1.2;
 			s5yb = s5yb/1.2;
 		});		
-	});
+	});//window.load()
 	soundManager.url = 'http://alt.coxnewsweb.com/ajc/_projects_and_planning_group/libraries/soundmanager2/swf/'; // directory where SM2 .SWFs live
 	soundManager.debugMode = false;
 	soundManager.onready(function () {
@@ -72,7 +73,7 @@
 			id: 'loseSound',
 			url: 'http://alt.coxnewsweb.com/ajc/swf/find_five_challenge/HTML5/template_assets/sounds/Buzzer2.mp3'
 		});
-	});
+	});//soundManager.onready
 	function preloadimages(arr){
 	    var newimages=[]
 	    var arr=(typeof arr!="object")? [arr] : arr //force arr parameter to always be an array
@@ -145,196 +146,173 @@
 				stopGame();
 			}
 		}
-	}
+	}//point_it
 	function miss(){
-			if(!gameOver){
-				missed++;
-				document.getElementById("miss"+missed).className = "missed";
-				if(missed>2){
-					stopGame();
-				}
-				else{
-					if(!soundManager.html5Only){
-						buzzerSound.play();
-					}
-				}
+		if(!gameOver){
+			missed++;
+			document.getElementById("miss"+missed).className = "missed";
+			if(missed>2){
+				stopGame();
 			}
-		}
-		function playHit(found){
-			if(found != 1){
+			else{
 				if(!soundManager.html5Only){
-					dingSound.play();
+					buzzerSound.play();
 				}
 			}
 		}
-
-		function timedCount(){
-			if(secs>0 && !gameOver){
-				secs--;
-				if(secs<10){
-					document.getElementById("timer").innerHTML="<h1>:0"+secs+"</h1>";
-				} else {
-					document.getElementById("timer").innerHTML="<h1>:"+secs+"</h1>";
-				}
-				if(secs==0){
-					stopGame();
-				} else {
-					t=setTimeout("timedCount()",1000);
-				}
+	}
+	function playHit(found){
+		if(found != 1){
+			if(!soundManager.html5Only){
+				dingSound.play();
 			}
 		}
+	}
 
-		function stopGame(){
-			gameOver=1;
-			var con=document.getElementById("btn");
-			con.innerHTML="<a onclick='reloadPage()'><div id='playAgain'><p class='btnTxt'>PLAY AGAIN?</p></div></a>";
-			btnName="playAgain";
-			var curcanvas = document.getElementById('canvas');
-			var curcanvasctx = curcanvas.getContext("2d");
-			curcanvasctx.fillStyle = "rgba(0, 0, 0, .8)";
-			curcanvasctx.fillRect(0, 0, curcanvas.width, curcanvas.height);
-			curcanvasctx.font="20px sans-serif";
-			if (win){
-				if(!soundManager.html5Only){
-					winSound.play();
-				}
-				curcanvasctx.fillStyle="#009800";
-				curcanvasctx.fillText("Great job!",95,90);
-				curcanvasctx.font="15px sans-serif";
-				curcanvasctx.fillText("You definitely have",77,120);
-				curcanvasctx.fillText("a keen eye!",104,140);
-				curcanvasctx.font="12px sans-serif";
-				curcanvasctx.fillText("Check out the ", 10,200);
-				curcanvasctx.fillStyle= "#FFFFFF";
-				curcanvasctx.fillText("Find Five Game Center ",90,200);
-				curcanvasctx.fillStyle="#009800";
-				curcanvasctx.fillText("for more.",220,200);				
-				addGameCenter();
+	function timedCount(){
+		if(secs>0 && !gameOver){
+			secs--;
+			if(secs<10){
+				document.getElementById("timer").innerHTML="<h1>:0"+secs+"</h1>";
 			} else {
-				if(!soundManager.html5Only){
-					loseSound.play();
-				}
-				curcanvasctx.fillStyle="#ffcc00";
-				curcanvasctx.fillText("What?",105,90);
-				curcanvasctx.font="15px sans-serif";
-				curcanvasctx.fillText("You couldn't find",79,120);
-				curcanvasctx.fillText("them all?",105,140);
-				curcanvasctx.font="12px sans-serif";
-				curcanvasctx.fillText("Check out the ", 10,200);
-				curcanvasctx.fillStyle= "#FFFFFF";
-				curcanvasctx.fillText("Find Five Game Center ",90,200);
-				curcanvasctx.fillStyle="#ffcc00";
-				curcanvasctx.fillText("for more.",220,200);
-				con=document.getElementById("answersBtn");
-				con.innerHTML="<a onClick='showAns()'><div style='cursor:pointer;'><img src='template_assets/img/answers.png' height='22' width='100' alt='Show answers?'/></div></a>";
-				addGameCenter();
+				document.getElementById("timer").innerHTML="<h1>:"+secs+"</h1>";
+			}
+			if(secs==0){
+				stopGame();
+			} else {
+				t=setTimeout("timedCount()",1000);
 			}
 		}
-		function addGameCenter(){
-			if (window.HTMLAudioElement){
-				var mycanvas = document.getElementById('canvas');
-				mycanvas.addEventListener( "click", function ( e ){
-			    	window.parent.location = "http://www.accessatlanta.com/games/";		  
-				});
+	}
+
+	function stopGame(){
+		gameOver=1;
+		var con=document.getElementById("btn");
+		con.innerHTML="<a onclick='reloadPage()'><div id='playAgain'><p class='btnTxt'>PLAY AGAIN?</p></div></a>";
+		btnName="playAgain";
+		var curcanvas = document.getElementById('canvas');
+		var curcanvasctx = curcanvas.getContext("2d");
+		curcanvasctx.fillStyle = "rgba(0, 0, 0, .8)";
+		curcanvasctx.fillRect(0, 0, curcanvas.width, curcanvas.height);
+		curcanvasctx.font="20px sans-serif";
+		if (win){
+			if(!soundManager.html5Only){
+				winSound.play();
 			}
+			curcanvasctx.fillStyle="#009800";
+			curcanvasctx.fillText("Great job!",95,90);
+			curcanvasctx.font="15px sans-serif";
+			curcanvasctx.fillText("You definitely have",77,120);
+			curcanvasctx.fillText("a keen eye!",104,140);
+			curcanvasctx.font="12px sans-serif";
+			curcanvasctx.fillText("Check out the ", 10,200);
+			curcanvasctx.fillStyle= "#FFFFFF";
+			curcanvasctx.fillText("Find Five Game Center ",90,200);
+			curcanvasctx.fillStyle="#009800";
+			curcanvasctx.fillText("for more.",220,200);				
+			addGameCenter();
+		} else {
+			if(!soundManager.html5Only){
+				loseSound.play();
+			}
+			curcanvasctx.fillStyle="#ffcc00";
+			curcanvasctx.fillText("What?",105,90);
+			curcanvasctx.font="15px sans-serif";
+			curcanvasctx.fillText("You couldn't find",79,120);
+			curcanvasctx.fillText("them all?",105,140);
+			curcanvasctx.font="12px sans-serif";
+			curcanvasctx.fillText("Check out the ", 10,200);
+			curcanvasctx.fillStyle= "#FFFFFF";
+			curcanvasctx.fillText("Find Five Game Center ",90,200);
+			curcanvasctx.fillStyle="#ffcc00";
+			curcanvasctx.fillText("for more.",220,200);
+			con=document.getElementById("answersBtn");
+			con.innerHTML="<a onClick='showAns()'><div style='cursor:pointer;'><img src='template_assets/img/answers.png' height='22' width='100' alt='Show answers?'/></div></a>";
+			addGameCenter();
 		}
-		function reloadPage(){
-			window.location.reload();
+	}//stopGame
+	function addGameCenter(){
+		if (window.HTMLAudioElement){
+			var mycanvas = document.getElementById('canvas');
+			mycanvas.addEventListener( "click", function ( e ){
+			    window.parent.location = "http://www.accessatlanta.com/games/";		  
+			});
 		}
+	}
+	function reloadPage(){
+		window.location.reload();
+	}
 
-		function showAns(){
-			var canvas = document.getElementById('canvas');
-			var ctx2 = canvas.getContext('2d');
-			ctx2.clearRect(0, 0, canvas.width, canvas.height);
-			ctx2.lineWidth = '2';
-			ctx2.strokeStyle='rgba(255, 205, 5, 1)';
-			ctx2.strokeRect(s1xt,s1yt,s1xb-s1xt,s1yb-s1yt);
-			ctx2.strokeRect(s2xt,s2yt,s2xb-s2xt,s2yb-s2yt);
-			ctx2.strokeRect(s3xt,s3yt,s3xb-s3xt,s3yb-s3yt);
-			ctx2.strokeRect(s4xt,s4yt,s4xb-s4xt,s4yb-s4yt);
-			ctx2.strokeRect(s5xt,s5yt,s5xb-s5xt,s5yb-s5yt);
-		}
+	function showAns(){
+		var canvas = document.getElementById('canvas');
+		var ctx2 = canvas.getContext('2d');
+		ctx2.clearRect(0, 0, canvas.width, canvas.height);
+		ctx2.lineWidth = '2';
+		ctx2.strokeStyle='rgba(255, 205, 5, 1)';
+		ctx2.strokeRect(s1xt,s1yt,s1xb-s1xt,s1yb-s1yt);
+		ctx2.strokeRect(s2xt,s2yt,s2xb-s2xt,s2yb-s2yt);
+		ctx2.strokeRect(s3xt,s3yt,s3xb-s3xt,s3yb-s3yt);
+		ctx2.strokeRect(s4xt,s4yt,s4xb-s4xt,s4yb-s4yt);
+		ctx2.strokeRect(s5xt,s5yt,s5xb-s5xt,s5yb-s5yt);
+	}
 
-		 var _gaq = _gaq || [];
-		  _gaq.push(['_setAccount', 'UA-28102445-1']);
-		  _gaq.push(['_trackPageview']);
+	var _gaq = _gaq || [];
+	_gaq.push(['_setAccount', 'UA-28102445-1']);
+	_gaq.push(['_trackPageview']);
 
-		  (function() {
-		    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-		    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-		    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-		  })();
+	(function() {
+		var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+		ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+		var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+	})();
 
-		</script>
-	</head>
-	<body>
-
+</script>
+</head>
+<body>
 <div class="socialbtns">
-		<span class='st_facebook_large' displayText='Facebook'></span>
-		<span class='st_twitter_large' displayText='Tweet'></span>
-		<span class='st_linkedin_large' displayText='LinkedIn'></span>
-		<span class='st_googleplus_large' displayText='Google +1'></span>
-		<span class='st_email_large' displayText='Email'></span>
-		<br/><br/>
-		Want to play more? <a href="http://www.accessatlanta.com/list/entertainment/games/find-five-challenge/aD4N/"><b>Click here!</b></a>
+	<span class='st_facebook_large' displayText='Facebook'></span>
+	<span class='st_twitter_large' displayText='Tweet'></span>
+	<span class='st_linkedin_large' displayText='LinkedIn'></span>
+	<span class='st_googleplus_large' displayText='Google +1'></span>
+	<span class='st_email_large' displayText='Email'></span>
+	<br/><br/>
+	Want to play more? <a href="http://www.accessatlanta.com/list/entertainment/games/find-five-challenge/aD4N/"><b>Click here!</b></a>
 
-		<script type="text/javascript">var switchTo5x=true;</script>
-		<script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
-		<script type="text/javascript">stLight.options({publisher: "2699b399-4f7a-491d-9191-230bcca8a974"}); </script>
+	<script type="text/javascript">var switchTo5x=true;</script>
+	<script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
+	<script type="text/javascript">stLight.options({publisher: "2699b399-4f7a-491d-9191-230bcca8a974"}); </script>
 </div>
-		<div data-role="page" id="container" style="margin:0 auto;
-		margin-left:auto;
-		margin-right:auto;
-		align:center;
-		text-align:left;">
-			
-			<div id="logo">
-				<img src="template_assets/img/logo.png" alt="Find Find Challenge"/>
-			</div>
-			<div id="head">
-				<div id="text">
-					<p>Find five differences between the original photo on the left and the altered photo on the right. Click each difference on the right-hand photo. You get three misses.</p>
-				</div>
-				<div id="timer">
-					<h1>:45</h1>
-				</div>
-				<div id="btn"></div>
-			</div> 
-			<div id="imageLabels">
-				<div class="label" id="org">
-					<div class="arrow">
-						<img src="template_assets/img/arrow.png" alt=""/>
-					</div>
-					<div class="arrowLabel">
-						ORIGINAL PHOTO
-					</div>
-				</div>
-				<div class="label" id="alt">
-					<div class="arrow">
-						<img src="template_assets/img/arrow.png" alt=""/>
-					</div>
-					<div class="arrowLabel">
-						ALTERED PHOTO
-					</div>
-				</div>
-			</div>
- 
-			<div id="images">
-					<img class="imgCon" id="orgImg" src="template_assets/img/example_org.jpg" alt="Example: Original"/>
-					<img class="imgCon" id="altImg" src="template_assets/img/example_alt.jpg" alt="Example: Altered"/>			
-			</div>
-			<div id="footer">
-				<div id="difficulty" class="difficulty"></div>
-				<div id="answersBtn"></div>
-				<div id="misses">
-					<div id="miss1" class="unmissed"></div>
-					<div id="miss2" class="unmissed"></div>
-					<div id="miss3" class="unmissed"></div>
-					<div id="missTxt">
-						MISSED
-					</div>
-				</div>
-			</div>
+<div data-role="page" id="container" style="margin:0 auto; margin-left:auto; margin-right:auto; align:center; text-align:left;">
+	<div id="logo"><img src="template_assets/img/logo.png" alt="Find Find Challenge"/></div>
+	<div id="head">
+		<div id="text"><p>Find five differences between the original photo on the left and the altered photo on the right. Click each difference on the right-hand photo. You get three misses.</p></div>
+		<div id="timer"><h1>:45</h1></div>
+		<div id="btn"></div>
+	</div> 
+	<div id="imageLabels">
+		<div class="label" id="org">
+			<div class="arrow"><img src="template_assets/img/arrow.png" alt=""/></div>
+			<div class="arrowLabel">ORIGINAL PHOTO</div>
 		</div>
-	</body>
+		<div class="label" id="alt">
+			<div class="arrow"><img src="template_assets/img/arrow.png" alt=""/></div>
+			<div class="arrowLabel">ALTERED PHOTO</div>
+		</div>
+	</div>
+	<div id="images">
+		<img class="imgCon" id="orgImg" src="template_assets/img/example_org.jpg" alt="Example: Original"/>
+		<img class="imgCon" id="altImg" src="template_assets/img/example_alt.jpg" alt="Example: Altered"/>			
+	</div>
+	<div id="footer">
+		<div id="difficulty" class="difficulty"></div>
+		<div id="answersBtn"></div>
+		<div id="misses">
+			<div id="miss1" class="unmissed"></div>
+			<div id="miss2" class="unmissed"></div>
+			<div id="miss3" class="unmissed"></div>
+			<div id="missTxt">MISSED</div>
+		</div>
+	</div>
+</div>
+</body>
 </html>
