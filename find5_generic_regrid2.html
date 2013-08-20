@@ -14,24 +14,11 @@
 		<meta content="width=device-width, minimum-scale=1" name="viewport">
 	 
 		<script type="text/javascript">
-		var secs = 45;
-		var gameOver = 0;
-		var missed = 0;
-		var sq1 = 0;
-		var sq2 = 0;
-		var sq3 = 0;
-		var sq4 = 0;
-		var sq5 = 0;
-		var pcred;
+		var secs = 45, gameOver = 0, missed = 0, win = 0, sq1 = 0, sq2 = 0, sq3 = 0, sq4 = 0, sq5 = 0;
 		var btnName = "startBtn";
-		var win = 0;
 		var url = window.location.toString();
 		var query_string = url.split("?");
-		var dingSound;
-		var buzzerSound;
-		var winSound;
-		var loseSound;
-		var G_vmlCanvasManager;
+		var pcred, dingSound, buzzerSound, winSound, loseSound, G_vmlCanvasManager;
 	$(window).load(function(){  
 		$.get('http://alt.coxnewsweb.com/ajc/swf/find_five_challenge/HTML5/js_files/FindFive_'+query_string[1]+'.js', function(){
 			//$.preload([orgImg, altImg]);
