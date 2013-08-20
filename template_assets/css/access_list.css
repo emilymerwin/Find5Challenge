@@ -1,0 +1,60 @@
+.type-index, .ui-page, .ui-body-c, .ui-page-active{
+	min-height: 0px !important;
+	font:Helvetica,Arial,sans-serif;
+	font-size: 13px;
+	}
+/*body.ui-mobile-viewport, div.ui-mobile-viewport{
+	overflow-x:auto;
+}*/
+.clearfix:after, .ajc-container:after{
+	display:inline;
+}
+.ui-mobile [data-role="page"], .ui-mobile [data-role="dialog"], .ui-page {
+	width:610px;
+	position:relative;
+}
+
+.ui-title{
+	font: Helvetica,Arial,sans-serif;
+	font-size: 16px;
+	font-weight:normal;
+margin:15px !important;	
+/*	height:40px;*/
+	text-align:left !important;
+	white-space:normal !important;
+	overflow:auto !important;
+}
+.ui-title img{
+	width:200px; 
+	vertical-align:middle;
+	/*padding: 0px 10px 10px 0px;*/
+	padding-right:10px;
+	margin-bottom:5px;
+	float:left;
+	/*
+	float:left; 
+	
+	left: 20px; 
+	position: absolute; 
+	top: 15px;*/
+}
+
+.ui-content{
+	padding:0px;
+}
+.ui-content .ui-listview{
+	margin:0px;
+}
+#miniajc{
+	min-height:10px;
+	font-weight:normal;
+	padding-left:38px;
+}
+#miniajc img{
+	height:28px;
+	float:left;
+	padding:4px 2px 2px 2px;
+}
+.ajclogo{
+	padding:2px 0px 5px 25px;
+}
