@@ -173,9 +173,9 @@
 		if(secs>0 && !gameOver){
 			secs--;
 			if(secs<10){
-				document.getElementById("timer").innerHTML="<h1>:0"+secs+"</h1>";
+				document.getElementById("timer").innerHTML=":0"+secs;
 			} else {
-				document.getElementById("timer").innerHTML="<h1>:"+secs+"</h1>";
+				document.getElementById("timer").innerHTML=":"+secs;
 			}
 			if(secs==0){
 				stopGame();
