@@ -27,7 +27,7 @@
 			var con = document.getElementById("difficulty");
 			var startbutton = document.getElementById("btn");
 			con.innerHTML = "Difficulty: <strong>"+difficulty+"</strong>";
-			startbutton.innerHTML = '<a onclick="startGame()"><div id="startBtn"><p class="btnTxt">START GAME!</p></div></a>';
+			startbutton.innerHTML = '<div id="startBtn" class="medium warning btn pretty"><a onclick="startGame()">START GAME!</a></div>';
 			if(pcred != undefined){
 				con.innerHTML += "<br><span class='pcredit'>Photo credit: "+pcred+"</span>";//if there is a credit deal with it
 			}
@@ -188,7 +188,7 @@
 	function stopGame(){
 		gameOver=1;
 		var con=document.getElementById("btn");
-		con.innerHTML="<a onclick='reloadPage()'><div id='playAgain'><p class='btnTxt'>PLAY AGAIN?</p></div></a>";
+		con.innerHTML="<div id='playAgain' class='medium warning btn pretty'><a onclick='reloadPage()'>PLAY AGAIN?</a></div>";
 		btnName="playAgain";
 		var curcanvas = document.getElementById('canvas');
 		var curcanvasctx = curcanvas.getContext("2d");
@@ -300,8 +300,6 @@
 		</div>
 	</div>
 	<div id="images">
-		<img class="imgCon" id="orgImg" src="template_assets/img/example_org.jpg" alt="Example: Original"/>
-		<img class="imgCon" id="altImg" src="template_assets/img/example_alt.jpg" alt="Example: Altered"/>			
 	</div>
 	<div id="footer">
 		<div id="difficulty" class="difficulty"></div>
