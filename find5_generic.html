@@ -28,7 +28,7 @@
 			var startbutton = document.getElementById("btn");
 			con.innerHTML = "Difficulty: <strong>"+difficulty+"</strong>";
 			startbutton.innerHTML = '<div id="startBtn" class="medium warning btn pretty"><a onclick="startGame()">START GAME!</a></div>';
-			if(pcred != undefined){
+			if(pcred){
 				con.innerHTML += "<br><span class='pcredit'>Photo credit: "+pcred+"</span>";//if there is a credit deal with it
 			}
 			//resize hit areas to match resized photos for accessatlanta version
@@ -77,7 +77,7 @@
 	});//soundManager.onready
 	function preloadimages(arr){
 	    var newimages=[]
-	    var arr=(typeof arr!="object")? [arr] : arr //force arr parameter to always be an array
+	    var arr=(typeof arr !== "object")? [arr] : arr //force arr parameter to always be an array
 	    for (var i=0; i<arr.length; i++){
 	        newimages[i]=new Image()
 	        newimages[i].src=arr[i]
@@ -164,7 +164,7 @@
 		}
 	}
 	function playHit(found){
-		if(found != 1){
+		if(found !== 1){
 			if(!soundManager.html5Only){
 				dingSound.play();
 			}
@@ -179,7 +179,7 @@
 			} else {
 				document.getElementById("timer").innerHTML=":"+secs;
 			}
-			if(secs==0){
+			if(secs === 0){
 				stopGame();
 			} else {
 				t=setTimeout("timedCount()",1000);
