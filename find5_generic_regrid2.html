@@ -4,13 +4,13 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <!--<link rel = "stylesheet" type="text/css" href="template_assets/css/style_main.css"/>-->
 <base target="_parent" />
-<link rel="stylesheet" href="http://alt.coxnewsweb.com/ajc/_newsapps/libraries/css/gumby/css/gumby.css" type="text/css"/>
+<link rel="stylesheet" href="template_assets/vendor/css/gumby_edited.css" type="text/css"/>
 <script src="http://alt.coxnewsweb.com/ajc/_newsapps/libraries/css/gumby/js/libs/modernizr-2.6.2.min.js"></script>
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
-<script type="text/javascript" src="template_assets/js/fader.js"></script>
-<!--[if lte IE 9]></script><script language="javascript" type="text/javascript" src="http://alt.coxnewsweb.com/ajc/swf/find_five_challenge/HTML5/template_assets/js/excanvas.js"></script><![endif]-->
-<script type="text/javascript" src="http://alt.coxnewsweb.com/ajc/swf/find_five_challenge/HTML5/template_assets/js/canvas.text.js"></script>
-<script type="text/javascript" src="http://alt.coxnewsweb.com/ajc/swf/find_five_challenge/HTML5/template_assets/js/faces/helvetiker-regular-normal.typeface.js"></script>
+<script type="text/javascript" src="template_assets/vendor/js/fader.js"></script>
+<!--[if lte IE 9]></script><script language="javascript" type="text/javascript" src="template_assets/vendor/js/excanvas.js"></script><![endif]-->
+<script type="text/javascript" src="template_assets/vendor/js/canvas.text.js"></script>
+<script type="text/javascript" src="template_assets/vendor/faces/helvetiker-regular.typeface.js"></script>
 <script type="text/javascript" src="http://alt.coxnewsweb.com/ajc/_projects_and_planning_group/libraries/soundmanager2/script/soundmanager2-nodebug-jsmin.js"></script>
 <title>Georgia Lottery Find 5 Challenge</title>
 <meta name="viewport" content="initial-scale=1.0" />
@@ -60,19 +60,19 @@
 	soundManager.onready(function () {
 		dingSound = soundManager.createSound({
 			id: 'dingSound',
-			url: 'http://alt.coxnewsweb.com/ajc/swf/find_five_challenge/HTML5/template_assets/sounds/Find5Chime.mp3'
+			url: 'template_assets/sounds/Find5Chime.mp3'
 		});
 		buzzerSound = soundManager.createSound({
 			id: 'buzzerSound',
-			url: 'http://alt.coxnewsweb.com/ajc/swf/find_five_challenge/HTML5/template_assets/sounds/Find5Buzzer.mp3'
+			url: 'template_assets/sounds/Find5Buzzer.mp3'
 		});
 		winSound = soundManager.createSound({
 			id: 'winSound',
-			url: 'http://alt.coxnewsweb.com/ajc/swf/find_five_challenge/HTML5/template_assets/sounds/Find5Winner.mp3'
+			url: 'template_assets/sounds/Find5Winner.mp3'
 		});
 		loseSound = soundManager.createSound({
 			id: 'loseSound',
-			url: 'http://alt.coxnewsweb.com/ajc/swf/find_five_challenge/HTML5/template_assets/sounds/Find5Buzzer.mp3'
+			url: 'template_assets/sounds/Find5Buzzer.mp3'
 		});
 	});//soundManager.onready
 	function preloadimages(arr){
