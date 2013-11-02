@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<base target="_parent" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<base target="_parent"/>
 <link rel="stylesheet" href="template_assets/vendor/css/gumby_edited.css" type="text/css"/>
 <link rel = "stylesheet" type="text/css" href="template_assets/css/main.css"/>
 <script src="http://alt.coxnewsweb.com/ajc/_newsapps/libraries/css/gumby/js/libs/modernizr-2.6.2.min.js"></script>
@@ -16,20 +16,16 @@
 <meta name="viewport" content="initial-scale=1.0" />
 <script type="text/javascript">
 	var secs = 45, gameOver = 0, missed = 0, win = 0, sq1 = 0, sq2 = 0, sq3 = 0, sq4 = 0, sq5 = 0;
-	var btnName = "startBtn";
-	var url = window.location.toString();
-	var query_string = url.split("?");
-	var pcred, dingSound, buzzerSound, winSound, loseSound, G_vmlCanvasManager;
+	var btnName = "startBtn", url = window.location.toString(), query_string = url.split("?"), pcred, dingSound, buzzerSound, winSound, loseSound, G_vmlCanvasManager;
 	$(window).load(function(){  
-		$.get('http://alt.coxnewsweb.com/ajc/swf/find_five_challenge/HTML5/js_files/FindFive_'+query_string[1]+'.js', function(){
+		$.get('http://alt.coxnewsweb.com/ajc/swf/find_five_challenge/HTML5/js_files/FindFive_' + query_string[1] + '.js', function(){
 			//$.preload([orgImg, altImg]);
 			preloadimages([orgImg, altImg]);
-			var con = document.getElementById("difficulty");
-			var startbutton = document.getElementById("btn");
-			con.innerHTML = "Difficulty: <strong>"+difficulty+"</strong>";
+			var con = document.getElementById("difficulty"), startbutton = document.getElementById("btn");
+			con.innerHTML = "Difficulty: <strong>" + difficulty + "</strong>";
 			startbutton.innerHTML = '<div id="startBtn" class="medium warning btn pretty"><a onclick="startGame()">START GAME!</a></div>';
 			if(pcred){
-				con.innerHTML += "<br><span class='pcredit'>Photo credit: "+pcred+"</span>";//if there is a credit deal with it
+				con.innerHTML += "<br><span class='pcredit'>Photo credit: " + pcred + "</span>";//if there is a credit deal with it
 			}
 			//resize hit areas to match resized photos for accessatlanta version
 			var imgScale = $("#altImg").width()/336;
@@ -76,28 +72,26 @@
 		});
 	});//soundManager.onready
 	function preloadimages(arr){
-	    var newimages=[]
-	    var arr=(typeof arr !== "object")? [arr] : arr //force arr parameter to always be an array
-	    for (var i=0; i<arr.length; i++){
-	        newimages[i]=new Image()
-	        newimages[i].src=arr[i]
+	    var newimages=[],  arr=(typeof arr !== "object")? [arr] : arr; //force arr parameter to always be an array
+	    for (var i = 0; i < arr.length; i++){
+	        newimages[i] = new Image();
+	        newimages[i].src = arr[i];
 	    }
 	}
 
 	function startGame () {
-		var startPos = $("#altImg").position();
-		var con=document.getElementById("images");
-		con.innerHTML='<div><img class="imgCon" id="orgImg" src='+orgImg+' alt="Original image"/></div><div><img class="imgCon" id="altImg" src='+altImg+' alt="Altered image"/><canvas onclick="point_it(event)" height="'+$("#altImg").height()+'" width="'+$("#altImg").width()+'" style="left:'+(startPos.left+2)+'px; top:'+(startPos.top+2)+'px" id="canvas"></canvas></div>';
-		canvasInit();//for ExCanvas
-		con=document.getElementById("btn");		
-		con.innerHTML="";
+		var startPos = $("#altImg").position(), con = document.getElementById("images");
+		con.innerHTML = '<div><img class="imgCon" id="orgImg" src=' + orgImg + ' alt="Original image"/></div><div><img class="imgCon" id="altImg" src=' + altImg + ' alt="Altered image"/><canvas onclick="point_it(event)" height="' + $("#altImg").height() + '" width="' + $("#altImg").width() + '" style="left:' + (startPos.left + 2) + 'px; top:' + (startPos.top + 2) + 'px" id="canvas"></canvas></div>';
+		canvasInit(); //for ExCanvas
+		con = document.getElementById("btn");
+		con.innerHTML = "";
 		timedCount();
 	}
 
 	function canvasInit() {
 		var cv = document.getElementById("canvas");
 		if (G_vmlCanvasManager != undefined) { // ie IE
-			G_vmlCanvasManager.initElement(cv);		
+			G_vmlCanvasManager.initElement(cv);
 		}
 		if (cv.getContext) {
 			var ctx = cv.getContext('2d');
@@ -106,40 +100,40 @@
 
 	function point_it(event){
 		if(!gameOver){
-			pos_x = event.offsetX?(event.offsetX):event.pageX-document.getElementById("altImg").offsetLeft-2.5;
-			pos_y = event.offsetY?(event.offsetY):event.pageY-document.getElementById("altImg").offsetTop-2.5;
-			var canvas = document.getElementById('canvas');		
+			pos_x = event.offsetX?(event.offsetX):event.pageX - document.getElementById("altImg").offsetLeft - 2.5;
+			pos_y = event.offsetY?(event.offsetY):event.pageY - document.getElementById("altImg").offsetTop - 2.5;
+			var canvas = document.getElementById('canvas');
 			if (canvas.getContext){
 				var ctx = canvas.getContext('2d');
 			}
 			ctx.fillStyle = "rgba(255, 205, 5, 0)";
 			ctx.lineWidth = '2';
-			ctx.strokeStyle='rgba(255, 205, 5, 1)';    				        
-			if(pos_x>s1xt && pos_x<s1xb && pos_y>s1yt && pos_y<s1yb){
+			ctx.strokeStyle='rgba(255, 205, 5, 1)';
+			if(pos_x > s1xt && pos_x < s1xb && pos_y > s1yt && pos_y < s1yb){
 				ctx.fillRect(s1xt,s1yt,s1xb-s1xt,s1yb-s1yt);
 				ctx.strokeRect(s1xt,s1yt,s1xb-s1xt,s1yb-s1yt);
 				playHit(sq1);
-				sq1=1;
-			} else if (pos_x>s2xt && pos_x<s2xb && pos_y>s2yt && pos_y<s2yb){
+				sq1 = 1;
+			} else if (pos_x > s2xt && pos_x < s2xb && pos_y > s2yt && pos_y < s2yb){
 				ctx.fillRect(s2xt,s2yt,s2xb-s2xt,s2yb-s2yt);
 				ctx.strokeRect(s2xt,s2yt,s2xb-s2xt,s2yb-s2yt);
 				playHit(sq2);
-				sq2=1;
-			} else if (pos_x>s3xt && pos_x<s3xb && pos_y>s3yt && pos_y<s3yb){
+				sq2 = 1;
+			} else if (pos_x > s3xt && pos_x<s3xb && pos_y > s3yt && pos_y < s3yb){
 				ctx.fillRect(s3xt,s3yt,s3xb-s3xt,s3yb-s3yt);
 				ctx.strokeRect(s3xt,s3yt,s3xb-s3xt,s3yb-s3yt);
 				playHit(sq3);
-				sq3=1;
-			} else if (pos_x>s4xt && pos_x<s4xb && pos_y>s4yt && pos_y<s4yb){
-				ctx.fillRect(s4xt,s4yt,s4xb-s4xt,s4yb-s4yt);
-				ctx.strokeRect(s4xt,s4yt,s4xb-s4xt,s4yb-s4yt);
+				sq3 = 1;
+			} else if (pos_x > s4xt && pos_x < s4xb && pos_y > s4yt && pos_y < s4yb){
+				ctx.fillRect(s4xt, s4yt, s4xb - s4xt, s4yb - s4yt);
+				ctx.strokeRect(s4xt, s4yt, s4xb - s4xt, s4yb - s4yt);
 				playHit(sq4);
-				sq4=1;
-			} else if (pos_x>s5xt && pos_x<s5xb && pos_y>s5yt && pos_y<s5yb){
-				ctx.fillRect(s5xt,s5yt,s5xb-s5xt,s5yb-s5yt);
-				ctx.strokeRect(s5xt,s5yt,s5xb-s5xt,s5yb-s5yt);
+				sq4 = 1;
+			} else if (pos_x > s5xt && pos_x < s5xb && pos_y > s5yt && pos_y < s5yb){
+				ctx.fillRect(s5xt, s5yt, s5xb - s5xt, s5yb - s5yt);
+				ctx.strokeRect(s5xt, s5yt, s5xb - s5xt, s5yb - s5yt);
 				playHit(sq5);
-				sq5=1;
+				sq5 = 1;
 			} else {
 				miss();
 			}
@@ -152,11 +146,10 @@
 	function miss(){
 		if(!gameOver){
 			missed++;
-			document.getElementById("miss"+missed).className = "missed";
-			if(missed>2){
+			document.getElementById("miss" + missed).className = "missed";
+			if(missed > 2){
 				stopGame();
-			}
-			else{
+			} else{
 				if(!soundManager.html5Only){
 					buzzerSound.play();
 				}
@@ -172,12 +165,12 @@
 	}
 
 	function timedCount(){
-		if(secs>0 && !gameOver){
+		if(secs > 0 && !gameOver){
 			secs--;
-			if(secs<10){
-				document.getElementById("timer").innerHTML=":0"+secs;
+			if(secs < 10 ){
+				document.getElementById("timer").innerHTML = ":0" + secs;
 			} else {
-				document.getElementById("timer").innerHTML=":"+secs;
+				document.getElementById("timer").innerHTML = ":" + secs;
 			}
 			if(secs === 0){
 				stopGame();
@@ -188,48 +181,48 @@
 	}
 
 	function stopGame(){
-		gameOver=1;
-		var con=document.getElementById("btn");
-		con.innerHTML="<div id='playAgain' class='medium warning btn pretty'><a onclick='reloadPage()'>PLAY AGAIN?</a></div>";
-		btnName="playAgain";
+		gameOver = 1;
+		var con = document.getElementById("btn");
+		con.innerHTML = "<div id='playAgain' class='medium warning btn pretty'><a onclick='reloadPage()'>PLAY AGAIN?</a></div>";
+		btnName = "playAgain";
 		var curcanvas = document.getElementById('canvas');
 		var curcanvasctx = curcanvas.getContext("2d");
 		curcanvasctx.fillStyle = "rgba(0, 0, 0, .8)";
 		curcanvasctx.fillRect(0, 0, curcanvas.width, curcanvas.height);
-		curcanvasctx.font="20px sans-serif";
+		curcanvasctx.font = "20px sans-serif";
 		if (win){
 			if(!soundManager.html5Only){
 				winSound.play();
 			}
-			curcanvasctx.fillStyle="#009800";
-			curcanvasctx.fillText("Great job!",95,90);
-			curcanvasctx.font="15px sans-serif";
-			curcanvasctx.fillText("You definitely have",77,120);
-			curcanvasctx.fillText("a keen eye!",104,140);
-			curcanvasctx.font="12px sans-serif";
-			curcanvasctx.fillText("Check out the ", 10,200);
-			curcanvasctx.fillStyle= "#FFFFFF";
-			curcanvasctx.fillText("Find Five Game Center ",90,200);
-			curcanvasctx.fillStyle="#009800";
-			curcanvasctx.fillText("for more.",220,200);				
+			curcanvasctx.fillStyle = "#009800";
+			curcanvasctx.fillText("Great job!", 95, 90);
+			curcanvasctx.font = "15px sans-serif";
+			curcanvasctx.fillText("You definitely have", 77, 120);
+			curcanvasctx.fillText("a keen eye!", 104, 140);
+			curcanvasctx.font = "12px sans-serif";
+			curcanvasctx.fillText("Check out the ", 10, 200);
+			curcanvasctx.fillStyle = "#FFFFFF";
+			curcanvasctx.fillText("Find Five Game Center ", 90, 200);
+			curcanvasctx.fillStyle = "#009800";
+			curcanvasctx.fillText("for more.", 220, 200);
 			addGameCenter();
 		} else {
 			if(!soundManager.html5Only){
 				loseSound.play();
 			}
-			curcanvasctx.fillStyle="#ffcc00";
-			curcanvasctx.fillText("What?",105,90);
-			curcanvasctx.font="15px sans-serif";
-			curcanvasctx.fillText("You couldn't find",79,120);
-			curcanvasctx.fillText("them all?",105,140);
-			curcanvasctx.font="12px sans-serif";
-			curcanvasctx.fillText("Check out the ", 10,200);
-			curcanvasctx.fillStyle= "#FFFFFF";
-			curcanvasctx.fillText("Find Five Game Center ",90,200);
-			curcanvasctx.fillStyle="#ffcc00";
-			curcanvasctx.fillText("for more.",220,200);
+			curcanvasctx.fillStyle = "#ffcc00";
+			curcanvasctx.fillText("What?", 105, 90);
+			curcanvasctx.font = "15px sans-serif";
+			curcanvasctx.fillText("You couldn't find", 79, 120);
+			curcanvasctx.fillText("them all?", 105, 140);
+			curcanvasctx.font = "12px sans-serif";
+			curcanvasctx.fillText("Check out the ", 10, 200);
+			curcanvasctx.fillStyle = "#FFFFFF";
+			curcanvasctx.fillText("Find Five Game Center ", 90, 200);
+			curcanvasctx.fillStyle = "#ffcc00";
+			curcanvasctx.fillText("for more.", 220, 200);
 			con=document.getElementById("answersBtn");
-			con.innerHTML="<a onClick='showAns()'><div style='cursor:pointer;'><img src='template_assets/img/answers.png' height='22' width='100' alt='Show answers?'/></div></a>";
+			con.innerHTML = "<a onClick='showAns()'><div style='cursor:pointer;'><img src='template_assets/img/answers.png' height='22' width='100' alt='Show answers?'/></div></a>";
 			addGameCenter();
 		}
 	}//stopGame
@@ -237,7 +230,7 @@
 		if (window.HTMLAudioElement){
 			var mycanvas = document.getElementById('canvas');
 			mycanvas.addEventListener( "click", function ( e ){
-			    window.parent.location = "http://www.accessatlanta.com/games/";		  
+			    window.parent.location = "http://www.accessatlanta.com/games/";
 			});
 		}
 	}
@@ -250,14 +243,15 @@
 		var ctx2 = canvas.getContext('2d');
 		ctx2.clearRect(0, 0, canvas.width, canvas.height);
 		ctx2.lineWidth = '2';
-		ctx2.strokeStyle='rgba(255, 205, 5, 1)';
-		ctx2.strokeRect(s1xt,s1yt,s1xb-s1xt,s1yb-s1yt);
-		ctx2.strokeRect(s2xt,s2yt,s2xb-s2xt,s2yb-s2yt);
-		ctx2.strokeRect(s3xt,s3yt,s3xb-s3xt,s3yb-s3yt);
-		ctx2.strokeRect(s4xt,s4yt,s4xb-s4xt,s4yb-s4yt);
-		ctx2.strokeRect(s5xt,s5yt,s5xb-s5xt,s5yb-s5yt);
+		ctx2.strokeStyle = 'rgba(255, 205, 5, 1)';
+		ctx2.strokeRect(s1xt, s1yt, s1xb - s1xt, s1yb - s1yt);
+		ctx2.strokeRect(s2xt, s2yt, s2xb - s2xt, s2yb - s2yt);
+		ctx2.strokeRect(s3xt, s3yt, s3xb - s3xt, s3yb - s3yt);
+		ctx2.strokeRect(s4xt, s4yt, s4xb - s4xt, s4yb - s4yt);
+		ctx2.strokeRect(s5xt, s5yt, s5xb - s5xt, s5yb - s5yt);
 	}
 
+	//Google Analytics
 	var _gaq = _gaq || [];
 	_gaq.push(['_setAccount', 'UA-28102445-1']);
 	_gaq.push(['_trackPageview']);
@@ -267,11 +261,9 @@
 		ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
 		var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
 	})();
-
 </script>
 </head>
 <body>
-
 <!--  Interaaction and Ad Rrefresh Code  -->
 <script src="flatpage_stubs.js"></script>
 <script>
@@ -290,8 +282,6 @@ document.body.onclick = function(e){
 }
 </script>
 <!--  End Interaaction and Ad Rrefresh Code  -->
-
-
 <div class="socialbtns">
 	<span class='st_facebook_large' displayText='Facebook'></span>
 	<span class='st_twitter_large' displayText='Tweet'></span>
