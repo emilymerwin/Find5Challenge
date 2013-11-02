@@ -275,36 +275,36 @@
 	<span class='st_linkedin_large' displayText='LinkedIn'></span>
 	<span class='st_googleplus_large' displayText='Google +1'></span>
 	<span class='st_email_large' displayText='Email'></span>
-	Want to play more? <a href="http://www.accessatlanta.com/list/entertainment/games/find-five-challenge/aD4N/"><b>Click here!</b></a>
-
 	<br>
+	Want to play more? <a href="http://www.accessatlanta.com/list/entertainment/games/find-five-challenge/aD4N/"><strong>Click here!</strong></a>
 	<script type="text/javascript">var switchTo5x=true;</script>
 	<script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
 	<script type="text/javascript">stLight.options({publisher: "2699b399-4f7a-491d-9191-230bcca8a974"}); </script>
 </div>
-<div data-role="page" id="container" style="margin:0 auto; margin-left:auto; margin-right:auto; align:center; text-align:left;">
-	<div id="logo"><img src="template_assets/img/logo.png" alt="Find Find Challenge"/></div>
-	<div id="head">
-		<div id="text"><p>Find five differences between the original photo on the left and the altered photo on the right. Click each difference on the right-hand photo. You get three misses.</p></div>
-		<div id="timer"><h1>:45</h1></div>
-		<div id="btn"></div>
-	</div> 
-	<div id="imageLabels">
-		<div class="label" id="org">
+<div id="container" class="twelve colgrid">
+	<ul id="head" class="row subnav"><!--what is that ID doing?-->
+		<li id="text" class="seven columns alpha"><p>Find five differences between the original photo on the left and the altered photo on the right. Click each difference on the right-hand photo. You get three misses.</p></li>
+		<li id="timer" class="two columns">:45</li>
+		<li id="btn" class="three columns omega"></li>
+	</ul> 
+	<div id="imageLabels" class="row">
+		<div class="label six columns alpha" id="org">
 			<div class="arrow"><img src="template_assets/img/arrow.png" alt=""/></div>
 			<div class="arrowLabel">ORIGINAL PHOTO</div>
 		</div>
-		<div class="label" id="alt">
+		<div class="label six columns omega" id="alt">
 			<div class="arrow"><img src="template_assets/img/arrow.png" alt=""/></div>
 			<div class="arrowLabel">ALTERED PHOTO</div>
 		</div>
 	</div>
 	<div id="images">
+		<div><img class="imgCon" id="orgImg" src="template_assets/img/example_org.jpg" alt="Example: Original"/></div>
+		<div><img class="imgCon" id="altImg" src="template_assets/img/example_alt.jpg" alt="Example: Altered"/></div>
 	</div>
-	<div id="footer">
-		<div id="difficulty" class="difficulty"></div>
-		<div id="answersBtn"></div>
-		<div id="misses">
+	<div class="row">
+		<div id="difficulty" class="difficulty six columns"></div>
+		<div id="answersBtn" class="three columns"></div>
+		<div id="misses" class="four columns omega">
 			<div id="miss1" class="unmissed"></div>
 			<div id="miss2" class="unmissed"></div>
 			<div id="miss3" class="unmissed"></div>
