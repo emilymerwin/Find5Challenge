@@ -84,8 +84,9 @@
 	}
 
 	function startGame () {
+		var startPos = $("#altImg").position();
 		var con=document.getElementById("images");
-		con.innerHTML='<div><img class="imgCon" id="orgImg" src='+orgImg+' alt="Original image"/></div><div><img class="imgCon" id="altImg" src='+altImg+' alt="Altered image"/><canvas onclick="point_it(event)" height="331" width="281" id="canvas"></canvas></div>';
+		con.innerHTML='<div><img class="imgCon" id="orgImg" src='+orgImg+' alt="Original image"/></div><div><img class="imgCon" id="altImg" src='+altImg+' alt="Altered image"/><canvas onclick="point_it(event)" height="'+$("#altImg").height()+'" width="'+$("#altImg").width()+'" style="left:'+(startPos.left+2)+'px; top:'+(startPos.top+2)+'px" id="canvas"></canvas></div>';
 		canvasInit();//for ExCanvas
 		con=document.getElementById("btn");		
 		con.innerHTML="";
