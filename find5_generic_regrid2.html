@@ -13,7 +13,7 @@
 <script type="text/javascript" src="http://alt.coxnewsweb.com/ajc/swf/find_five_challenge/HTML5/template_assets/js/faces/helvetiker-regular-normal.typeface.js"></script>
 <script type="text/javascript" src="http://alt.coxnewsweb.com/ajc/_projects_and_planning_group/libraries/soundmanager2/script/soundmanager2-nodebug-jsmin.js"></script>
 <title>Georgia Lottery Find 5 Challenge</title>
-<meta content="width=device-width, minimum-scale=1" name="viewport">
+<meta name="viewport" content="initial-scale=1.0" />
 <script type="text/javascript">
 	var secs = 45, gameOver = 0, missed = 0, win = 0, sq1 = 0, sq2 = 0, sq3 = 0, sq4 = 0, sq5 = 0;
 	var btnName = "startBtn";
@@ -32,26 +32,27 @@
 				con.innerHTML += "<br><span class='pcredit'>Photo credit: "+pcred+"</span>";//if there is a credit deal with it
 			}
 			//resize hit areas to match resized photos for accessatlanta version
-			s1xt = s1xt/1.2, 
-			s1yt = s1yt/1.2;
-			s1xb = s1xb/1.2;
-			s1yb = s1yb/1.2;
-			s2xt = s2xt/1.2;
-			s2yt = s2yt/1.2;
-			s2xb = s2xb/1.2;
-			s2yb = s2yb/1.2;
-			s3xt = s3xt/1.2;
-			s3yt = s3yt/1.2;
-			s3xb = s3xb/1.2;
-			s3yb = s3yb/1.2;
-			s4xt = s4xt/1.2;
-			s4yt = s4yt/1.2;
-			s4xb = s4xb/1.2;
-			s4yb = s4yb/1.2;
-			s5xt = s5xt/1.2;
-			s5yt = s5yt/1.2;
-			s5xb = s5xb/1.2;
-			s5yb = s5yb/1.2;
+			var imgScale = $("#altImg").width()/336;
+			s1xt = s1xt*imgScale;
+			s1yt = s1yt*imgScale;
+			s1xb = s1xb*imgScale;
+			s1yb = s1yb*imgScale;
+			s2xt = s2xt*imgScale;
+			s2yt = s2yt*imgScale;
+			s2xb = s2xb*imgScale;
+			s2yb = s2yb*imgScale;
+			s3xt = s3xt*imgScale;
+			s3yt = s3yt*imgScale;
+			s3xb = s3xb*imgScale;
+			s3yb = s3yb*imgScale;
+			s4xt = s4xt*imgScale;
+			s4yt = s4yt*imgScale;
+			s4xb = s4xb*imgScale;
+			s4yb = s4yb*imgScale;
+			s5xt = s5xt*imgScale;
+			s5yt = s5yt*imgScale;
+			s5xb = s5xb*imgScale;
+			s5yb = s5yb*imgScale;
 		});		
 	});//window.load()
 	soundManager.url = 'http://alt.coxnewsweb.com/ajc/_projects_and_planning_group/libraries/soundmanager2/swf/'; // directory where SM2 .SWFs live
