@@ -271,6 +271,27 @@
 </script>
 </head>
 <body>
+
+<!--  Interaaction and Ad Rrefresh Code  -->
+<script src="flatpage_stubs.js"></script>
+<script>
+// Have to add flatpage_stubs.js above this script
+var i = 0;
+document.body.onclick = function(e){
+	i += 1;
+	// Track in metrics
+	cmg.s_coxnews.utilities.track_event(42, null, ["eVar40", "interactive_findfive"], ["prop42", "eVar42", "ajc"], "Interaction in Find Five Game");
+
+	if(i === 3){
+		i = 0;
+		// Refresh ads
+		Adgeletti.refresh();
+	}
+}
+</script>
+<!--  End Interaaction and Ad Rrefresh Code  -->
+
+
 <div class="socialbtns">
 	<span class='st_facebook_large' displayText='Facebook'></span>
 	<span class='st_twitter_large' displayText='Tweet'></span>
