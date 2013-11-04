@@ -71,6 +71,7 @@
 			url: 'template_assets/sounds/Find5Buzzer.mp3'
 		});
 	});//soundManager.onready
+
 	function preloadimages(arr){
 	    var newimages=[],  arr=(typeof arr !== "object")? [arr] : arr; //force arr parameter to always be an array
 	    for (var i = 0; i < arr.length; i++){
@@ -83,8 +84,7 @@
 		var startPos = $("#altImg").position(), con = document.getElementById("images");
 		con.innerHTML = '<div><img class="imgCon" id="orgImg" src=' + orgImg + ' alt="Original image"/></div><div><img class="imgCon" id="altImg" src=' + altImg + ' alt="Altered image"/><canvas onclick="point_it(event)" height="' + $("#altImg").height() + '" width="' + $("#altImg").width() + '" style="left:' + (startPos.left + 2) + 'px; top:' + (startPos.top + 2) + 'px" id="canvas"></canvas></div>';
 		canvasInit(); //for ExCanvas
-		con = document.getElementById("btn");
-		con.innerHTML = "";
+		document.getElementById("btn").innerHTML = "";
 		timedCount();
 	}
 
@@ -138,7 +138,7 @@
 				miss();
 			}
 			if(sq1 && sq2 && sq3 && sq4 && sq5){
-				win=1;
+				win = 1;
 				stopGame();
 			}
 		}
@@ -175,18 +175,16 @@
 			if(secs === 0){
 				stopGame();
 			} else {
-				t=setTimeout("timedCount()",1000);
+				t = setTimeout("timedCount()",1000);
 			}
 		}
 	}
 
 	function stopGame(){
 		gameOver = 1;
-		var con = document.getElementById("btn");
-		con.innerHTML = "<div id='playAgain' class='medium warning btn pretty'><a onclick='reloadPage()'>PLAY AGAIN?</a></div>";
+		document.getElementById("btn").innerHTML = "<div id='playAgain' class='medium warning btn pretty'><a onclick='reloadPage()'>PLAY AGAIN?</a></div>";
 		btnName = "playAgain";
-		var canvas = document.getElementById('canvas');
-		var context = canvas.getContext("2d");
+		var canvas = document.getElementById('canvas'), context = canvas.getContext("2d");
 		var maxWidth = canvas.width-10, lineHeight = 25; x = maxWidth/2 + 5, y = parseInt(canvas.height/5); //for wrapText()
 		context.fillStyle = "rgba(0, 0, 0, .8)";
 		context.fillRect(0, 0, canvas.width, canvas.height);
@@ -210,8 +208,7 @@
 			context.font = "15px sans-serif";
 			wrapText("You couldn't find them all?", y*2);
 			gameCenter();
-			con=document.getElementById("answersBtn");
-			con.innerHTML = "<a onClick='showAns()'><div style='cursor:pointer;'><img src='template_assets/img/answers.png' height='22' width='100' alt='Show answers?'/></div></a>";
+			document.getElementById("answersBtn").innerHTML = "<a onClick='showAns()'><div style='cursor:pointer;'><img src='template_assets/img/answers.png' height='22' width='100' alt='Show answers?'/></div></a>";
 		}
 		function gameCenter(){
 			context.fillStyle = "#FFFFFF";
@@ -255,17 +252,6 @@
 		ctx2.strokeRect(s4xt, s4yt, s4xb - s4xt, s4yb - s4yt);
 		ctx2.strokeRect(s5xt, s5yt, s5xb - s5xt, s5yb - s5yt);
 	}
-
-	//Google Analytics
-	var _gaq = _gaq || [];
-	_gaq.push(['_setAccount', 'UA-28102445-1']);
-	_gaq.push(['_trackPageview']);
-
-	(function() {
-		var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-		ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-		var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-	})();
 </script>
 </head>
 <body>
@@ -288,11 +274,7 @@ document.body.onclick = function(e){
 </script>
 <!--  End Interaaction and Ad Rrefresh Code  -->
 <div class="socialbtns">
-	<span class='st_facebook_large' displayText='Facebook'></span>
-	<span class='st_twitter_large' displayText='Tweet'></span>
-	<span class='st_linkedin_large' displayText='LinkedIn'></span>
-	<span class='st_googleplus_large' displayText='Google +1'></span>
-	<span class='st_email_large' displayText='Email'></span>
+	<span class='st_facebook_large' displayText='Facebook'></span><span class='st_twitter_large' displayText='Tweet'></span><span class='st_linkedin_large' displayText='LinkedIn'></span><span class='st_googleplus_large' displayText='Google +1'></span><span class='st_email_large' displayText='Email'></span>
 	<br>
 	Want to play more? <a href="http://www.accessatlanta.com/list/entertainment/games/find-five-challenge/aD4N/"><strong>Click here!</strong></a>
 	<script type="text/javascript">var switchTo5x=true;</script>
@@ -334,5 +316,17 @@ document.body.onclick = function(e){
 		</div>
 	</div>
 </div>
+<script>
+//Google Analytics
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-28102445-1']);
+_gaq.push(['_trackPageview']);
+
+(function() {
+	var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+	ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+	var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+</script>
 </body>
 </html>
