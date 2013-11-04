@@ -187,7 +187,7 @@
 		btnName = "playAgain";
 		var canvas = document.getElementById('canvas');
 		var context = canvas.getContext("2d");
-		var maxWidth = canvas.width-10, lineHeight = 25; x = maxWidth/2 + 5;
+		var maxWidth = canvas.width-10, lineHeight = 25; x = maxWidth/2 + 5, y = parseInt(canvas.height/5); //for wrapText()
 		context.fillStyle = "rgba(0, 0, 0, .8)";
 		context.fillRect(0, 0, canvas.width, canvas.height);
 		context.font = "20px sans-serif";
@@ -197,18 +197,18 @@
 				winSound.play();
 			}
 			context.fillStyle = "#009800";
-			context.fillText("Great job!", x, 90);
+			context.fillText("Great job!", x, y);
 			context.font = "15px sans-serif";
-			wrapText("You definitely have a keen eye!", 120);
+			wrapText("You definitely have a keen eye!", y*2);
 			gameCenter();
 		} else {
 			if(!soundManager.html5Only){
 				loseSound.play();
 			}
 			context.fillStyle = "#ffcc00";
-			context.fillText("What?", x, 90);
+			context.fillText("What?", x, y);
 			context.font = "15px sans-serif";
-			wrapText("You couldn't find them all?", 120);
+			wrapText("You couldn't find them all?", y*2);
 			gameCenter();
 			con=document.getElementById("answersBtn");
 			con.innerHTML = "<a onClick='showAns()'><div style='cursor:pointer;'><img src='template_assets/img/answers.png' height='22' width='100' alt='Show answers?'/></div></a>";
@@ -216,7 +216,7 @@
 		function gameCenter(){
 			context.fillStyle = "#FFFFFF";
 			context.font = "12px sans-serif";
-			wrapText("Check out the Find Five Game Center for more.", 200);
+			wrapText("Check out the Find Five Game Center for more.", y*3+10);
 			canvas.addEventListener( "click", function (){
 			    window.parent.location = "http://www.accessatlanta.com/s/games/";
 			});
