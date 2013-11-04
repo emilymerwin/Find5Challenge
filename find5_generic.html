@@ -199,13 +199,7 @@
 			curcanvasctx.font = "15px sans-serif";
 			curcanvasctx.fillText("You definitely have", 77, 120);
 			curcanvasctx.fillText("a keen eye!", 104, 140);
-			curcanvasctx.font = "12px sans-serif";
-			curcanvasctx.fillText("Check out the ", 10, 200);
-			curcanvasctx.fillStyle = "#FFFFFF";
-			curcanvasctx.fillText("Find Five Game Center ", 90, 200);
-			curcanvasctx.fillStyle = "#009800";
-			curcanvasctx.fillText("for more.", 220, 200);
-			addGameCenter();
+			gameCenter();
 		} else {
 			if(!soundManager.html5Only){
 				loseSound.play();
@@ -215,25 +209,23 @@
 			curcanvasctx.font = "15px sans-serif";
 			curcanvasctx.fillText("You couldn't find", 79, 120);
 			curcanvasctx.fillText("them all?", 105, 140);
+			gameCenter();
+			con=document.getElementById("answersBtn");
+			con.innerHTML = "<a onClick='showAns()'><div style='cursor:pointer;'><img src='template_assets/img/answers.png' height='22' width='100' alt='Show answers?'/></div></a>";
+		}
+		function gameCenter(){
 			curcanvasctx.font = "12px sans-serif";
 			curcanvasctx.fillText("Check out the ", 10, 200);
 			curcanvasctx.fillStyle = "#FFFFFF";
 			curcanvasctx.fillText("Find Five Game Center ", 90, 200);
 			curcanvasctx.fillStyle = "#ffcc00";
 			curcanvasctx.fillText("for more.", 220, 200);
-			con=document.getElementById("answersBtn");
-			con.innerHTML = "<a onClick='showAns()'><div style='cursor:pointer;'><img src='template_assets/img/answers.png' height='22' width='100' alt='Show answers?'/></div></a>";
-			addGameCenter();
-		}
-	}//stopGame
-	function addGameCenter(){
-		if (window.HTMLAudioElement){
-			var mycanvas = document.getElementById('canvas');
-			mycanvas.addEventListener( "click", function ( e ){
-			    window.parent.location = "http://www.accessatlanta.com/games/";
+			curcanvas.addEventListener( "click", function (){
+			    window.parent.location = "http://www.accessatlanta.com/s/games/";
 			});
 		}
-	}
+	}//stopGame
+
 	function reloadPage(){
 		window.location.reload();
 	}
