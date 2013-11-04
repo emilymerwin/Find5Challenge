@@ -185,42 +185,42 @@
 		var con = document.getElementById("btn");
 		con.innerHTML = "<div id='playAgain' class='medium warning btn pretty'><a onclick='reloadPage()'>PLAY AGAIN?</a></div>";
 		btnName = "playAgain";
-		var curcanvas = document.getElementById('canvas');
-		var curcanvasctx = curcanvas.getContext("2d");
-		curcanvasctx.fillStyle = "rgba(0, 0, 0, .8)";
-		curcanvasctx.fillRect(0, 0, curcanvas.width, curcanvas.height);
-		curcanvasctx.font = "20px sans-serif";
+		var canvas = document.getElementById('canvas');
+		var context = canvas.getContext("2d");
+		context.fillStyle = "rgba(0, 0, 0, .8)";
+		context.fillRect(0, 0, canvas.width, canvas.height);
+		context.font = "20px sans-serif";
 		if (win){
 			if(!soundManager.html5Only){
 				winSound.play();
 			}
-			curcanvasctx.fillStyle = "#009800";
-			curcanvasctx.fillText("Great job!", 95, 90);
-			curcanvasctx.font = "15px sans-serif";
-			curcanvasctx.fillText("You definitely have", 77, 120);
-			curcanvasctx.fillText("a keen eye!", 104, 140);
+			context.fillStyle = "#009800";
+			context.fillText("Great job!", 95, 90);
+			context.font = "15px sans-serif";
+			context.fillText("You definitely have", 77, 120);
+			context.fillText("a keen eye!", 104, 140);
 			gameCenter();
 		} else {
 			if(!soundManager.html5Only){
 				loseSound.play();
 			}
-			curcanvasctx.fillStyle = "#ffcc00";
-			curcanvasctx.fillText("What?", 105, 90);
-			curcanvasctx.font = "15px sans-serif";
-			curcanvasctx.fillText("You couldn't find", 79, 120);
-			curcanvasctx.fillText("them all?", 105, 140);
+			context.fillStyle = "#ffcc00";
+			context.fillText("What?", 105, 90);
+			context.font = "15px sans-serif";
+			context.fillText("You couldn't find", 79, 120);
+			context.fillText("them all?", 105, 140);
 			gameCenter();
 			con=document.getElementById("answersBtn");
 			con.innerHTML = "<a onClick='showAns()'><div style='cursor:pointer;'><img src='template_assets/img/answers.png' height='22' width='100' alt='Show answers?'/></div></a>";
 		}
 		function gameCenter(){
-			curcanvasctx.font = "12px sans-serif";
-			curcanvasctx.fillText("Check out the ", 10, 200);
-			curcanvasctx.fillStyle = "#FFFFFF";
-			curcanvasctx.fillText("Find Five Game Center ", 90, 200);
-			curcanvasctx.fillStyle = "#ffcc00";
-			curcanvasctx.fillText("for more.", 220, 200);
-			curcanvas.addEventListener( "click", function (){
+			context.font = "12px sans-serif";
+			context.fillText("Check out the ", 10, 200);
+			context.fillStyle = "#FFFFFF";
+			context.fillText("Find Five Game Center ", 90, 200);
+			context.fillStyle = "#ffcc00";
+			context.fillText("for more.", 220, 200);
+			canvas.addEventListener( "click", function (){
 			    window.parent.location = "http://www.accessatlanta.com/s/games/";
 			});
 		}
