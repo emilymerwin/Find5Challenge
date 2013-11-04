@@ -187,43 +187,56 @@
 		btnName = "playAgain";
 		var canvas = document.getElementById('canvas');
 		var context = canvas.getContext("2d");
+		var maxWidth = canvas.width-10, lineHeight = 25; x = maxWidth/2 + 5;
 		context.fillStyle = "rgba(0, 0, 0, .8)";
 		context.fillRect(0, 0, canvas.width, canvas.height);
 		context.font = "20px sans-serif";
+		context.textAlign = 'center';
 		if (win){
 			if(!soundManager.html5Only){
 				winSound.play();
 			}
 			context.fillStyle = "#009800";
-			context.fillText("Great job!", 95, 90);
+			context.fillText("Great job!", x, 90);
 			context.font = "15px sans-serif";
-			context.fillText("You definitely have", 77, 120);
-			context.fillText("a keen eye!", 104, 140);
+			wrapText("You definitely have a keen eye!", 120);
 			gameCenter();
 		} else {
 			if(!soundManager.html5Only){
 				loseSound.play();
 			}
 			context.fillStyle = "#ffcc00";
-			context.fillText("What?", 105, 90);
+			context.fillText("What?", x, 90);
 			context.font = "15px sans-serif";
-			context.fillText("You couldn't find", 79, 120);
-			context.fillText("them all?", 105, 140);
+			wrapText("You couldn't find them all?", 120);
 			gameCenter();
 			con=document.getElementById("answersBtn");
 			con.innerHTML = "<a onClick='showAns()'><div style='cursor:pointer;'><img src='template_assets/img/answers.png' height='22' width='100' alt='Show answers?'/></div></a>";
 		}
 		function gameCenter(){
-			context.font = "12px sans-serif";
-			context.fillText("Check out the ", 10, 200);
 			context.fillStyle = "#FFFFFF";
-			context.fillText("Find Five Game Center ", 90, 200);
-			context.fillStyle = "#ffcc00";
-			context.fillText("for more.", 220, 200);
+			context.font = "12px sans-serif";
+			wrapText("Check out the Find Five Game Center for more.", 200);
 			canvas.addEventListener( "click", function (){
 			    window.parent.location = "http://www.accessatlanta.com/s/games/";
 			});
 		}
+        function wrapText(text, y) {
+			var words = text.split(' '), line = '';
+			for(var n = 0; n < words.length; n++) {
+				var testLine = line + words[n] + ' ';
+				var metrics = context.measureText(testLine);
+				var testWidth = metrics.width;
+				if (testWidth > maxWidth && n > 0) {
+					context.fillText(line, x, y);
+					line = words[n] + ' ';
+					y += lineHeight;
+				} else {
+					line = testLine;
+				}
+			}
+			context.fillText(line, x, y);
+		} //wrapText
 	}//stopGame
 
 	function reloadPage(){
