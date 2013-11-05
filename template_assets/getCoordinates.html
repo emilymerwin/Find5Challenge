@@ -1,169 +1,164 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<title>Find 5: Get coordinates</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Find 5: Get coordinates</title>
 <style type="text/css">
 *{
-	font-family:Arial,sans-serif;
-	font-size:12px;
+	font-family: Arial, sans-serif;
+	font-size: 12px;
 }
 span{
-	font-weight:normal;
+	font-weight: normal;
+}
+#original {
+	float: left;
+}
+.img, #canvas {
+	width: 336px;
+	height: 396px;
 }
 </style>
 <script type="text/javascript">
+	var squareNum = 1, clickNum = 1, currentY, currentX, difficulty, pcred;
+	var s1xt, s1yt, s1xb, s1yb, s2xt, s2yt, s2xb, s2yb, s3xt, s3yt, s3xb, s3yb, s4xt, s4yt, s4xb, s4yb, s5xt, s5yt, s5xb, s5yb;
 
-var squareNum=1;
-var clickNum=1;
-var currentY;
-var currentX;
-var difficulty;
-var pcred;
-var s1xt, s1yt, s1xb, s1yb, s2xt, s2yt, s2xb, s2yb, s3xt, s3yt, s3xb, s3yb, s4xt, s4yt, s4xb, s4yb, s5xt, s5yt, s5xb, s5yb;
-
-function loadImgs(form){
-	orgImg=form.orgImage.value;
-	altImg=form.altImage.value;
-	difficulty=form.dif.value;
-	pcred=form.pcred.value;
-	var con=document.getElementById("form");
-	con.innerHTML="<form name='pointform' method='post'><div style='width:700px'><div id='original' style='float:left'><strong>Original Image</strong><div style = 'background-image:url(\""+orgImg+"\");width:336px;height:396px;'></div></div><div id='altered' style='float:right'><strong>Altered Image</strong><div id='pointer_div' onclick='point_it(event)' style = 'background-image:url(\""+altImg+"\");width:336px;height:396px;'><canvas width='336px' height='396px' id='canvas'></canvas></div></div></div><strong>Square 1</strong><br/>Xtop = <input type='text' name='form_x1' size='4' /> Ytop = <input type='text' name='form_y1' size='4' />Xbottom = <input type='text' name='form_x2' size='4' /> Ybottom = <input type='text' name='form_y2' size='4' /><button type='button' onclick='changeSq(1)'>Activate Square 1</button><br/><strong>Square 2</strong><br/>Xtop = <input type='text' name='form_x3' size='4' /> Ytop = <input type='text' name='form_y3' size='4' />Xbottom = <input type='text' name='form_x4' size='4' /> Ybottom = <input type='text' name='form_y4' size='4' /><button type='button' onclick='changeSq(2)'>Activate Square 2</button><br/><strong>Square 3</strong><br/>Xtop = <input type='text' name='form_x5' size='4' /> Ytop = <input type='text' name='form_y5' size='4' />Xbottom = <input type='text' name='form_x6' size='4' /> Ybottom = <input type='text' name='form_y6' size='4' /><button type='button' onclick='changeSq(3)'>Activate Square 3</button><br/><strong>Square 4</strong><br/>Xtop = <input type='text' name='form_x7' size='4' /> Ytop = <input type='text' name='form_y7' size='4' />Xbottom = <input type='text' name='form_x8' size='4' /> Ybottom = <input type='text' name='form_y8' size='4' /><button type='button' onclick='changeSq(4)'>Activate Square 4</button><br/><strong>Square 5</strong><br/>Xtop = <input type='text' name='form_x9' size='4' /> Ytop = <input type='text' name='form_y9' size='4' />Xbottom = <input type='text' name='form_x10' size='4' /> Ybottom = <input type='text' name='form_y10' size='4' /><button type='button' onclick='changeSq(5)'>Activate Square 5</button></form><div><button type='button' onclick='getCode()'>Get Code</button></div>";
-}
-
-/*function viewSqs(){
-	var ctx = canvas.getContext('2d');
-	ctx.fillStyle = "rgba(0, 0, 200, 0.8)";	 
-	ctx.fillRect(s1xt,s1yt,(s1xb-s1xt),(s1yb-s1yt));
-	ctx.fillRect(s2xt,s2yt,(s2xb-s2xt),(s2yb-s2yt));
-	ctx.fillRect(s3xt,s3yt,(s3xb-s3xt),(s3yb-s3yt));
-	ctx.fillRect(s4xt,s4yt,(s4xb-s4xt),(s4yb-s4yt));
-	ctx.fillRect(s5xt,s5yt,(s5xb-s5xt),(s5yb-s5yt));
-}*/
-
-function getCode(){
-	var con=document.getElementById("code");
-	con.innerHTML="<h4>Copy the below code and past it into a .js file. Upload to alt server Find5 HTML5 folder in js_files</h4><span style='color:red;'>var orgImg = \""+orgImg+"\";</br>var altImg = \""+altImg+"\";</br>var difficulty = \""+difficulty+"\";</br>var s1xt = "+s1xt+";</br>var s1yt = "+s1yt+";</br>var s1xb = "+s1xb+";</br>var s1yb = "+s1yb+";</br>var s2xt = "+s2xt+";</br>var s2yt = "+s2yt+";</br>var s2xb = "+s2xb+";</br>var s2yb = "+s2yb+";</br>var s3xt = "+s3xt+";</br>var s3yt = "+s3yt+";</br>var s3xb = "+s3xb+";</br>var s3yb = "+s3yb+";</br>var s4xt = "+s4xt+";</br>var s4yt = "+s4yt+";</br>var s4xb = "+s4xb+";</br>var s4yb = "+s4yb+";</br>var s5xt = "+s5xt+";</br>var s5yt = "+s5yt+";</br>var s5xb = "+s5xb+";</br>var s5yb = "+s5yb+";</br></span>";
-	if(pcred != ""){
-		con.innerHTML += "<span style='color:red;'>var pcred = \""+pcred+"\";</br></span>";
+	function loadImgs(form){
+		orgImg = form.orgImage.value;
+		altImg = form.altImage.value;
+		difficulty = form.dif.value;
+		pcred = form.pcred.value;
+		var con = document.getElementById("form");
+		con.innerHTML = "<form name='pointform' method='post'><div style='width:700px'><div id='original' style='float:left'><strong>Original Image</strong><div style = 'background-image:url(\""+orgImg+"\");width:336px;height:396px;'></div></div><div id='altered' style='float:right'><strong>Altered Image</strong><div id='pointer_div' onclick='point_it(event)' style = 'background-image:url(\""+altImg+"\");width:336px;height:396px;'><canvas width='336px' height='396px' id='canvas'></canvas></div></div></div><strong>Square 1</strong><br/>Xtop = <input type='text' name='form_x1' size='4' /> Ytop = <input type='text' name='form_y1' size='4' />Xbottom = <input type='text' name='form_x2' size='4' /> Ybottom = <input type='text' name='form_y2' size='4' /><button type='button' onclick='changeSq(1)'>Activate Square 1</button><br/><strong>Square 2</strong><br/>Xtop = <input type='text' name='form_x3' size='4' /> Ytop = <input type='text' name='form_y3' size='4' />Xbottom = <input type='text' name='form_x4' size='4' /> Ybottom = <input type='text' name='form_y4' size='4' /><button type='button' onclick='changeSq(2)'>Activate Square 2</button><br/><strong>Square 3</strong><br/>Xtop = <input type='text' name='form_x5' size='4' /> Ytop = <input type='text' name='form_y5' size='4' />Xbottom = <input type='text' name='form_x6' size='4' /> Ybottom = <input type='text' name='form_y6' size='4' /><button type='button' onclick='changeSq(3)'>Activate Square 3</button><br/><strong>Square 4</strong><br/>Xtop = <input type='text' name='form_x7' size='4' /> Ytop = <input type='text' name='form_y7' size='4' />Xbottom = <input type='text' name='form_x8' size='4' /> Ybottom = <input type='text' name='form_y8' size='4' /><button type='button' onclick='changeSq(4)'>Activate Square 4</button><br/><strong>Square 5</strong><br/>Xtop = <input type='text' name='form_x9' size='4' /> Ytop = <input type='text' name='form_y9' size='4' />Xbottom = <input type='text' name='form_x10' size='4' /> Ybottom = <input type='text' name='form_y10' size='4' /><button type='button' onclick='changeSq(5)'>Activate Square 5</button></form><div><button type='button' onclick='getCode()'>Get Code</button></div>";
 	}
-}
 
-function changeSq(num){
-	squareNum=num;
-	var curcanvas = document.getElementById('canvas');
-	curcanvasctx = curcanvas.getContext("2d");
-//	curcanvasctx.clearRect(0, 0, curcanvas.width, curcanvas.height);
-}
+	/*function viewSqs(){
+		var ctx = canvas.getContext('2d');
+		ctx.fillStyle = "rgba(0, 0, 200, 0.8)";	 
+		ctx.fillRect(s1xt,s1yt,(s1xb-s1xt),(s1yb-s1yt));
+		ctx.fillRect(s2xt,s2yt,(s2xb-s2xt),(s2yb-s2yt));
+		ctx.fillRect(s3xt,s3yt,(s3xb-s3xt),(s3yb-s3yt));
+		ctx.fillRect(s4xt,s4yt,(s4xb-s4xt),(s4yb-s4yt));
+		ctx.fillRect(s5xt,s5yt,(s5xb-s5xt),(s5yb-s5yt));
+	}*/
 
-function point_it(event){
-	pos_x = event.offsetX?(event.offsetX):event.pageX-document.getElementById("pointer_div").offsetLeft;
-	pos_y = event.offsetY?(event.offsetY):event.pageY-document.getElementById("pointer_div").offsetTop;
-	if(clickNum==1){
-	currentX=pos_x;
-	currentY=pos_y;
-	var curcanvas = document.getElementById('canvas');
-	curcanvasctx = curcanvas.getContext("2d");
-//	curcanvasctx.clearRect(0, 0, curcanvas.width, curcanvas.height);
-	switch(squareNum)
-	{
-	case 1:
- 		document.pointform.form_x1.value = pos_x;
-		document.pointform.form_y1.value = pos_y;
-		s1xt=pos_x;
-		s1yt=pos_y;
-  		break;
-	case 2:
-  		document.pointform.form_x3.value = pos_x;
-		document.pointform.form_y3.value = pos_y;
-		s2xt=pos_x;
-		s2yt=pos_y;
-  		break;
-  	case 3:
-		document.pointform.form_x5.value = pos_x;
-		document.pointform.form_y5.value = pos_y;
-		s3xt=pos_x;
-		s3yt=pos_y;
-  		break;
-  	case 4:
-  		document.pointform.form_x7.value = pos_x;
-		document.pointform.form_y7.value = pos_y;
-		s4xt=pos_x;
-		s4yt=pos_y;
-  		break;
-  	case 5:
-  		document.pointform.form_x9.value = pos_x;
-		document.pointform.form_y9.value = pos_y;
-		s5xt=pos_x;
-		s5yt=pos_y;
-  		break;
-		}
-	} else {
-	  var canvas = document.getElementById('canvas');
-	  if (canvas.getContext){
-	  var ctx = canvas.getContext('2d');
-	  ctx.fillStyle = "rgba(200, 0, 0, 0.3)";	 
-	  ctx.fillRect(currentX,currentY,(pos_x-currentX),(pos_y-currentY));
-	  }
-	switch(squareNum)
-	{
-	case 1:
- 		document.pointform.form_x2.value = pos_x;
-		document.pointform.form_y2.value = pos_y;
-		s1xb=pos_x;
-		s1yb=pos_y;
-  		break;
-	case 2:
-  		document.pointform.form_x4.value = pos_x;
-		document.pointform.form_y4.value = pos_y;
-		s2xb=pos_x;
-		s2yb=pos_y;
-  		break;
-  	case 3:
-		document.pointform.form_x6.value = pos_x;
-		document.pointform.form_y6.value = pos_y;
-		s3xb=pos_x;
-		s3yb=pos_y;
-  		break;
-  	case 4:
-  		document.pointform.form_x8.value = pos_x;
-		document.pointform.form_y8.value = pos_y;
-		s4xb=pos_x;
-		s4yb=pos_y;
-  		break;
-  	case 5:
-  		document.pointform.form_x10.value = pos_x;
-		document.pointform.form_y10.value = pos_y;
-		s5xb=pos_x;
-		s5yb=pos_y;
-  		break;
+	function getCode(){
+		var con = document.getElementById("code");
+		con.innerHTML = "<h4>Copy the below code and past it into a .js file. Upload to alt server Find5 HTML5 folder in js_files</h4><span style='color:red;'>var orgImg = \"" + orgImg + "\";<br>var altImg = \"" + altImg + "\";<br>var difficulty = \"" + difficulty + "\";<br>var s1xt = " + s1xt + ";<br>var s1yt = " + s1yt + ";<br>var s1xb = " + s1xb + ";<br>var s1yb = " + s1yb + ";<br>var s2xt = " + s2xt + ";<br>var s2yt = " + s2yt + ";<br>var s2xb = " + s2xb + ";<br>var s2yb = " + s2yb + ";<br>var s3xt = " + s3xt + ";<br>var s3yt = " + s3yt + ";<br>var s3xb = " + s3xb + ";<br>var s3yb = " + s3yb + ";<br>var s4xt = " + s4xt + ";<br>var s4yt = " + s4yt + ";<br>var s4xb = " + s4xb + ";<br>var s4yb = " + s4yb + ";<br>var s5xt = " + s5xt + ";<br>var s5yt = " + s5yt + ";<br>var s5xb = " + s5xb + ";<br>var s5yb = " + s5yb + ";<br></span>";
+		if(pcred != ""){
+			con.innerHTML += "<span style='color:red;'>var pcred = \"" + pcred + "\";<br></span>";
 		}
 	}
-	if(clickNum==1){
-	clickNum++;
-	} else {
-	clickNum=1;
+
+	function changeSq(num){
+		squareNum=num;
+		var curcanvas = document.getElementById('canvas');
+		curcanvasctx = curcanvas.getContext("2d");
+		//curcanvasctx.clearRect(0, 0, curcanvas.width, curcanvas.height);
 	}
-}
+
+	function point_it(event){
+		pos_x = event.offsetX?(event.offsetX):event.pageX-document.getElementById("pointer_div").offsetLeft;
+		pos_y = event.offsetY?(event.offsetY):event.pageY-document.getElementById("pointer_div").offsetTop;
+		if(clickNum === 1){
+			currentX = pos_x;
+			currentY = pos_y;
+			var curcanvas = document.getElementById('canvas');
+			curcanvasctx = curcanvas.getContext("2d");
+			//curcanvasctx.clearRect(0, 0, curcanvas.width, curcanvas.height);
+			switch(squareNum) {
+				case 1:
+					document.pointform.form_x1.value = pos_x;
+					document.pointform.form_y1.value = pos_y;
+					s1xt = pos_x;
+					s1yt = pos_y;
+					break;
+				case 2:
+					document.pointform.form_x3.value = pos_x;
+					document.pointform.form_y3.value = pos_y;
+					s2xt = pos_x;
+					s2yt = pos_y;
+					break;
+				case 3:
+					document.pointform.form_x5.value = pos_x;
+					document.pointform.form_y5.value = pos_y;
+					s3xt = pos_x;
+					s3yt = pos_y;
+					break;
+				case 4:
+					document.pointform.form_x7.value = pos_x;
+					document.pointform.form_y7.value = pos_y;
+					s4xt = pos_x;
+					s4yt = pos_y;
+					break;
+				case 5:
+					document.pointform.form_x9.value = pos_x;
+					document.pointform.form_y9.value = pos_y;
+					s5xt = pos_x;
+					s5yt = pos_y;
+					break;
+			}
+		} else {
+			var canvas = document.getElementById('canvas');
+			if (canvas.getContext){
+				var ctx = canvas.getContext('2d');
+				ctx.fillStyle = "rgba(200, 0, 0, 0.3)";
+				ctx.fillRect(currentX, currentY, (pos_x - currentX), (pos_y - currentY));
+			}
+			switch(squareNum) {
+				case 1:
+					document.pointform.form_x2.value = pos_x;
+					document.pointform.form_y2.value = pos_y;
+					s1xb = pos_x;
+					s1yb = pos_y;
+					break;
+				case 2:
+					document.pointform.form_x4.value = pos_x;
+					document.pointform.form_y4.value = pos_y;
+					s2xb = pos_x;
+					s2yb = pos_y;
+					break;
+				case 3:
+					document.pointform.form_x6.value = pos_x;
+					document.pointform.form_y6.value = pos_y;
+					s3xb = pos_x;
+					s3yb = pos_y;
+					break;
+				case 4:
+					document.pointform.form_x8.value = pos_x;
+					document.pointform.form_y8.value = pos_y;
+					s4xb = pos_x;
+					s4yb = pos_y;
+					break;
+				case 5:
+					document.pointform.form_x10.value = pos_x;
+					document.pointform.form_y10.value = pos_y;
+					s5xb = pos_x;
+					s5yb = pos_y;
+					break;
+				}
+			}
+
+		if(clickNum === 1){
+			clickNum++;
+		} else {
+			clickNum = 1;
+		}
+	}
 </script>
-
-
-
 </head>
 <body style="width:1400px;">
-<div id="inputImgs" >
-<form name="imgs" method="post">
-<p><strong>Paste the URLs of the pictures from the alt server into the boxes below and then click "submit"</strong></p>
-Original:<input type="text" name="orgImage" size="105"/><br/>
-Altered: <input type="text" name="altImage" size="105"/><br/>
-Easy, Medium, Hard? <input type="text" name="dif" size="30"/><br/>
-Photo credit? (not required) <input type="text" name="pcred" size="30"/><br/>
-<button type="button" onclick="loadImgs(this.form)">submit</button>
-</form> 
-</div>
-<div id="form">
-</div> 
-<div id="code">
-</div>
+	<div id="inputImgs" >
+		<form name="imgs" method="post">
+			<p><strong>Paste the URLs of the pictures from the alt server into the boxes below and then click "submit"</strong></p>
+			Original:<input type="text" name="orgImage" size="105"><br>
+			Altered: <input type="text" name="altImage" size="105"><br>
+			Easy, Medium, Hard? <input type="text" name="dif" size="30"><br>
+			Photo credit? (not required) <input type="text" name="pcred" size="30"><br>
+			<button type="button" onclick="loadImgs(this.form)">submit</button>
+		</form>
+	</div>
+	<div id="form"></div>
+	<div id="code"></div>
 </body>
 </html>
