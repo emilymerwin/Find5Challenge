@@ -55,7 +55,6 @@
 }
 #altImg {
 	max-width:280px;
-	margin: 0 0 5px 0;
 }
 @media only screen and (max-width: 600px) { #orgImg, #altImg { max-width: 46%; margin: 0 6px;} #altImg{float:right;} #startBtn, #playAgain{float:right;} .lotto{float:left;}}
 .difficulty {

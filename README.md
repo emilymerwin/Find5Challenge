@@ -7,4 +7,4 @@
 - RSS list is broken because of change to naming convention, change it to split on "Challenge: " rather than char number
 
 ###ToDo
-- [ ] Mobile coordinates still messed up
+- [ ] Mobile touch events cause flicker of selection highlight or something like that
