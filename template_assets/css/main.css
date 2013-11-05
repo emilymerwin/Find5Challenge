@@ -1,140 +1,120 @@
-*{
+body {
 	margin: 0;
 	padding: 0;
-	font-family:Arial,sans-serif;	
+	font-family: Arial,sans-serif;
 	font-size: 12px;
 }
-.subnav{
-	margin:0 !important;
+.subnav {
+	margin: 0 !important;
 }
-.subnav li{
-	margin:0 !important;
+.subnav li {
+	margin: 0 !important;
 }
-#container{
-	background-image:url(http://alt.coxnewsweb.com/ajc/swf/find_five_challenge/HTML5/template_assets/img/background.jpg);
+#container {
+	background-image: url(http://alt.coxnewsweb.com/ajc/swf/find_five_challenge/HTML5/template_assets/img/background.jpg);
 	background-color: #2327BF;
 	/*max-width:610px;*/
 	/*min-height: 590px;*/
 }
-#logo{
-	padding:10px 0px;
+#logo {
+	padding: 10px 0px;
 }
 #text p {
 	color: white;
 	text-shadow: #2E2E2E 0.1em 0.1em 0.2em;
-	font-family:Arial,sans-serif;
+	font-family: Arial,sans-serif;
 	font-size: 12px;
-/*	text-align: justify;*/
 }
 #timer {
 	color: white;
 	font-weight: bold;
 	font-size: 38px;
 	padding: 10px 5px;
-		height: 46px;
-		width:68px;
-		background-color: #2E2E2E;
-		border: 1px solid #2E2E2E;
-		    border-radius: 10px 10px 10px 10px;
-	/*	width: 72px;*/
-	/*	margin-left: 25px;*/
-/*		margin-bottom: 10px;*/
-	/*	float: left;*/
-		/*background-image: url(http://alt.coxnewsweb.com/ajc/swf/find_five_challenge/HTML5/template_assets/img/timer.png);*/
-	}
+	height: 46px;
+	width: 68px;
+	background-color: #2E2E2E;
+	border: 1px solid #2E2E2E;
+	border-radius: 10px 10px 10px 10px;
+}
 .imgCon {
-/*	width:280px;
-	height: 330px;*/
 	border: white solid 2px;
 }
-
 #orgImg {
-	max-width:280px;
-	float:left;
+	max-width: 280px;
+	float: left;
 	margin: 0 14px 5px 14px;
 }
 #altImg {
-	max-width:280px;
+	max-width: 280px;
 }
-@media only screen and (max-width: 600px) { #orgImg, #altImg { max-width: 46%; margin: 0 6px;} #altImg{float:right;} #startBtn, #playAgain{float:right;} .lotto{float:left;}}
-.difficulty {
-	color:#FFCC00;
-	font-size:14px;
-	}
-.difficulty strong{
-	font-size:14px;	
+@media only screen and (max-width: 600px) {
+	#orgImg, #altImg { max-width: 46%; margin: 0 6px; }
+	#altImg, #startBtn, #playAgain{ float: right; }
+	.lotto{ float: left; }
 }
-.arrow {
-/*	height: 10px;
-	width: 10px;*/
-	float: left;
-	}
 
+.difficulty {
+	color: #FFCC00;
+	font-size: 14px;
+}
+.difficulty strong {
+	font-size: 14px;
+}
+.pcredit {
+	font-size: 11px;
+	padding-top: 10px;
+	color: white;
+}
+
+.arrow {
+	float: left;
+}
 .arrowLabel {
 	font-size: 10px;
 	color: white;
 	margin-left: 15px;
-	text-align:left;
-	}
+	text-align: left;
+}
+
 #btn {
-/*	width:157px;*/
-	height:46px;
-/*	float: right;*/
-	margin:0 20px 0 0;
+	height: 46px;
+	margin: 0 20px 0 0;
 }
 #answersBtn {
-	height:22px;
-	width:100px;
-	}
-.pcredit{
-	font-size:11px;
-	padding-top:10px;
-	color:white;
+	height: 22px;
+	width: 100px;
 }
-/*.btnTxt {
-	font-size:20px;
-	font-style:italic;
-	font-weight:bold;
-	padding-left:9px;
-	padding-top:11px;
-	}*/
 #startBtn, #playAgain {
-/*	width:157px;
-	height:46px;*/
-	/*background-image:url(http://alt.coxnewsweb.com/ajc/swf/find_five_challenge/HTML5/template_assets/img/btn.png);*/
 	cursor: pointer;
 }
+
 #canvas{
-	position:absolute;
-	display:block;
-/*	left:314px;
-	top:241px;*/
+	position: absolute;
+	display: block;
 	cursor: pointer;
 }
+
 #misses {
-	width:75px;
-	}
-	
-.unmissed {
-	background-color:black;
-	width:20px;
-	height:20px;
-	margin-right:5px;
-	float:right;
-	}
-	
-.missed {
-	background-image:url(http://alt.coxnewsweb.com/ajc/swf/find_five_challenge/HTML5/template_assets/img/miss.png);
-	width:20px;
-	height:20px;
-	margin-right:5px;
-	float:left;
-	}
-#missTxt {
-	font-size:9px;
-	color:black;
+	width: 75px;
 }
-.socialbtns{
-	height:65px;
-	font-size:12px;
+.missed, .unmissed {
+	width: 20px;
+	height: 20px;
+	margin-right: 5px;
+}
+.unmissed {
+	background-color: black;
+	float: right;
+}
+.missed {
+	background-image: url(http://alt.coxnewsweb.com/ajc/swf/find_five_challenge/HTML5/template_assets/img/miss.png);
+	float: left;
+}
+#missTxt {
+	font-size: 9px;
+	color: black;
+}
+.socialbtns {
+	height: 65px;
+	font-size: 12px;
 }
