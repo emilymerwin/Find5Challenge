@@ -15,8 +15,6 @@ body {
 #container {
 	background-image: url(../img/background.jpg);
 	background-color: #2327BF;
-	/*max-width:610px;*/
-	/*min-height: 590px;*/
 }
 #logo {
 	padding: 10px 0px;

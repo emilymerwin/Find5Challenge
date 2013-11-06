@@ -1,127 +1,102 @@
 <!DOCTYPE html>
-<html> 
-	<head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1"> 
-	<title>Find 5 Archive</title> 
-	
-	<link rel="stylesheet" href="http://alt.coxnewsweb.com/ajc/_projects_and_planning_group/libraries/jquerymobile/1.1.0/jquery.mobile-1.1.0.min.css" />	
-	<link rel="stylesheet" href="http://alt.coxnewsweb.com/ajc/swf/find_five_challenge/HTML5/template_assets/css/Find5Theme.min.css" />	
-	<link rel="stylesheet" href="template_assets/css/list.css" />	
-	<script src="http://code.jquery.com/jquery-1.6.4.min.js"></script>
-	<script src="http://alt.coxnewsweb.com/ajc/_projects_and_planning_group/libraries/jquerymobile/1.1.0/jquery.mobile-1.1.0.min.js"></script>
-	<script type="text/javascript" src="https://www.google.com/jsapi?key=ABQIAAAAtcnB3ThAAC-94zXSBvaK8xQbPjs3iGWTrpk-iAY0InMUOjKKfhQhCJ48N_LtNFOJEeXLmRiUwaEejw"></script>
-	<!--[if lte IE 8]><script language="javascript" type="text/javascript" src="http://alt.coxnewsweb.com/ajc/_projects_and_planning_group/libraries/excanvas.min.js"></script><![endif]-->
-	<!--<script type="text/javascript" src="http://code.jquery.com/mobile/latest/jquery.mobile.js"></script>-->
-	<script type="text/javascript"> 
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Find 5 Archive</title>
+<link rel="stylesheet" href="http://alt.coxnewsweb.com/ajc/_projects_and_planning_group/libraries/jquerymobile/1.1.0/jquery.mobile-1.1.0.min.css" />
+<link rel="stylesheet" href="http://alt.coxnewsweb.com/ajc/swf/find_five_challenge/HTML5/template_assets/css/Find5Theme.min.css" />
+<link rel="stylesheet" href="template_assets/css/list.css" />
+<script src="http://code.jquery.com/jquery-1.6.4.min.js"></script>
+<script src="http://alt.coxnewsweb.com/ajc/_projects_and_planning_group/libraries/jquerymobile/1.1.0/jquery.mobile-1.1.0.min.js"></script>
+<script type="text/javascript" src="https://www.google.com/jsapi?key=ABQIAAAAtcnB3ThAAC-94zXSBvaK8xQbPjs3iGWTrpk-iAY0InMUOjKKfhQhCJ48N_LtNFOJEeXLmRiUwaEejw"></script>
+<!--[if lte IE 8]><script language="javascript" type="text/javascript" src="http://alt.coxnewsweb.com/ajc/_projects_and_planning_group/libraries/excanvas.min.js"></script><![endif]-->
+<script type="text/javascript">
 	google.load("feeds", "1");
-	$( 'div' ).live( 'pageinit',function() {
-	  // disable ajax nav
-	  $.mobile.ajaxLinksEnabled = false;
-	  initialize();
-	 });
-	
+	$("div").live("pageinit",function() {
+		//disable ajax nav
+		$.mobile.ajaxLinksEnabled = false;
+		initialize();
+	});
+
 	function initialize() {
-      	//var feed = new google.feeds.Feed("http://www.accessatlanta.com/genericList-rss.do?source=81187");
-var feed = new google.feeds.Feed("http://www.accessatlanta.com/list/rss/entertainment/games/find-five-challenge/aD4N/");
-      	feed.setNumEntries(100);
+		var feed = new google.feeds.Feed("http://www.accessatlanta.com/list/rss/entertainment/games/find-five-challenge/aD4N/");
+		feed.setNumEntries(100);
 		feed.load(function(result) {
 			var s = 0;
-
-        	if (!result.error) {
-
-          		for (var i = 0; i < result.feed.entries.length; i++) {
-								if(s==0){
-									var container = document.getElementById("gamelista");      		
-								}
-								else{
-									var container = document.getElementById("gamelistb");
-
-								}
-					if(s==0){
+			if (!result.error) {
+				for (var i = 0; i < result.feed.entries.length; i++) {
+					if(s === 0){
+						var container = document.getElementById("gamelista");
+					} else{
+						var container = document.getElementById("gamelistb");
+					}
+					if(s === 0){
 						s++;
+					} else{
+						s = 0;
 					}
-					else{
-						s=0;
-					}
-            		var entry = result.feed.entries[i];
-					var bullet = document.createElement('li');
-					var link = document.createElement('a');
-					var myLink = "http://alt.coxnewsweb.com/ajc/swf/find_five_challenge/HTML5/find5_ipad.html?"+parseTitle(entry.title);
+					var entry = result.feed.entries[i], bullet = document.createElement('li'), link = document.createElement('a'), myLink = "http://alt.coxnewsweb.com/ajc/swf/find_five_challenge/HTML5/find5_ipad.html?"+parseTitle(entry.title);
 					link.setAttribute('href', myLink);
 					link.setAttribute('data-ajax', false);
-					link.appendChild(document.createTextNode(printTitle(entry.title)));						
-					bullet.appendChild(link);	
-            		container.appendChild(bullet);
-          		}
-				var container = document.getElementById("gamelistb");
-				var comeBack = document.createElement('li');
-				var link = document.createElement('a');
+					link.appendChild(document.createTextNode(printTitle(entry.title)));
+					bullet.appendChild(link);
+					container.appendChild(bullet);
+				}
+				var container = document.getElementById("gamelistb"), comeBack = document.createElement('li'), link = document.createElement('a'), minilogo = document.createElement('img');
 				comeBack.setAttribute('data-icon', "false");
-				//comeBack.setAttribute('class', "comeback");
-				var minilogo = document.createElement('img');
 				minilogo.setAttribute('src', "http://alt.coxnewsweb.com/ajc/swf/find_five_challenge/HTML5/template_assets/img/logo_sml.png");
 				minilogo.setAttribute('class', "ui-li-thumb");
 				link.appendChild(minilogo);
 				link.setAttribute('id', "miniajc");
 				link.appendChild(document.createTextNode("Look tomorrow for a new Find Five Challenge!"));
-				
+
 				comeBack.appendChild(link);
 				container.appendChild(comeBack);
 				$("#gamelista").listview("refresh");
 				$("#gamelistb").listview("refresh");
-        	}
-      	});
-    }
-	function parseTitle(title){
-	//	alert(title);
+			}
+		});
+	}
+	function parseTitle(title){ //for creating query string
 		var temparray = splitTitle(title);
 		var newstring = temparray.join("");
 		return(newstring.toLowerCase());
 	}
 
-	function printTitle(title){
-			var tempstring = splitTitle(title);
-			var titlestring = tempstring.join(" ");
-			return(titlestring);
+	function printTitle(title){ //for display
+		var tempstring = splitTitle(title);
+		var titlestring = tempstring.join(" ");
+		return(titlestring);
 	}
 	function splitTitle(title){
 		var titlesub = title.substring(20, title.length);
-			var split_array = titlesub.split(" ");
-			return(split_array);
+		var split_array = titlesub.split(" ");
+		return(split_array);
 	}
 
-//new HTML5 version for iPad specific analytics code
-	  var _gaq = _gaq || [];
-	  _gaq.push(['_setAccount', 'UA-28102445-1']);
-	  _gaq.push(['_trackPageview']);
+	//new HTML5 version for iPad specific analytics code
+	var _gaq = _gaq || [];
+	_gaq.push(['_setAccount', 'UA-28102445-1']);
+	_gaq.push(['_trackPageview']);
 
-	  (function() {
-	    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-	    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-	    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-	  })();
-
-	
-	</script>
-</head> 
-<body> 
-
+	(function() {
+		var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+		ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+		var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+	})();
+</script>
+</head>
+<body>
 	<div data-role="page" class="type-index">
-		<!--<div data-role="header" data-theme="d">-->
 		<div data-role="header">
-		<h1 class="intro" ><img src="http://alt.coxnewsweb.com/ajc/swf/find_five_challenge/HTML5/template_assets/img/logo.png" alt=""/>New to Find Five? You'll like it, but we warn you -- it's habit-forming. Race against the clock to spot the differences between two copies of the same image.</h1>
+			<h1 class="intro"><img src="http://alt.coxnewsweb.com/ajc/swf/find_five_challenge/HTML5/template_assets/img/logo.png" alt="" />New to Find Five? You'll like it, but we warn you -- it's habit-forming. Race against the clock to spot the differences between two copies of the same image.</h1>
 		</div>
 		<div data-role="content">
-			<!--<ul id="gamelist" data-role="listview" data-divider-theme="a">-->
-			<div class="ui-grid-a" >
-				<ul class="ui-block-a" id="gamelista" data-role="listview">
-					<!--<li data-role="list-divider" style="text-align:center">Find 5 Archive</li>-->
-				</ul>	
-				<ul class="ui-block-b" id="gamelistb" data-role="listview">
-					<!--<li data-role="list-divider" style="text-align:center">Find 5 Archive</li>-->
-				</ul>
-			</div>	
+			<div class="ui-grid-a">
+				<ul class="ui-block-a" id="gamelista" data-role="listview"></ul>
+				<ul class="ui-block-b" id="gamelistb" data-role="listview"></ul>
+			</div>
 		</div>
 		<div data-role="footer" class="ajclogo">
 			<img src="http://alt.coxnewsweb.com/ajc/_projects_and_planning_group/graphics/logos/ajc/AJC_3Cs_LOGO_small.png" alt="" />
