@@ -20,8 +20,7 @@ span{
 }
 </style>
 <script type="text/javascript">
-	var squareNum = 0, clickNum = 1, currentY, currentX, difficulty, pcred;
-	var s1xt, s1yt, s1xb, s1yb, s2xt, s2yt, s2xb, s2yb, s3xt, s3yt, s3xb, s3yb, s4xt, s4yt, s4xb, s4yb, s5xt, s5yt, s5xb, s5yb;
+	var squareNum = 0, clickNum = 1, currentY, currentX, difficulty, pcred, coords = [];
 
 	function loadImgs(form){
 		orgImg = form.orgImage.value;
@@ -48,7 +47,7 @@ span{
 
 	function getCode(){
 		var con = document.getElementById("code");
-		con.innerHTML = "<h4>Copy the below code and past it into a .js file. Upload to alt server Find5 HTML5 folder in js_files</h4><span style='color:red;'>var orgImg = \"" + orgImg + "\";<br>var altImg = \"" + altImg + "\";<br>var difficulty = \"" + difficulty + "\";<br>var s1xt = " + s1xt + ";<br>var s1yt = " + s1yt + ";<br>var s1xb = " + s1xb + ";<br>var s1yb = " + s1yb + ";<br>var s2xt = " + s2xt + ";<br>var s2yt = " + s2yt + ";<br>var s2xb = " + s2xb + ";<br>var s2yb = " + s2yb + ";<br>var s3xt = " + s3xt + ";<br>var s3yt = " + s3yt + ";<br>var s3xb = " + s3xb + ";<br>var s3yb = " + s3yb + ";<br>var s4xt = " + s4xt + ";<br>var s4yt = " + s4yt + ";<br>var s4xb = " + s4xb + ";<br>var s4yb = " + s4yb + ";<br>var s5xt = " + s5xt + ";<br>var s5yt = " + s5yt + ";<br>var s5xb = " + s5xb + ";<br>var s5yb = " + s5yb + ";<br></span>";
+		con.innerHTML = "<h4>Copy the below code and past it into a .js file. Upload to alt server Find5 HTML5 folder in js_files</h4><span style='color:red;'>var orgImg = \"" + orgImg + "\";<br>var altImg = \"" + altImg + "\";<br>var difficulty = \"" + difficulty + "\";<br>var coords = [ "+coords+"];<br></span>";
 		if(pcred != ""){
 			con.innerHTML += "<span style='color:red;'>var pcred = \"" + pcred + "\";<br></span>";
 		}
@@ -66,39 +65,11 @@ span{
 			currentY = pos_y;
 			var curcanvas = document.getElementById('canvas');
 			curcanvasctx = curcanvas.getContext("2d");
-			//curcanvasctx.clearRect(0, 0, curcanvas.width, curcanvas.height);
-			switch(squareNum) {
-				case 0:
-					document.pointform.form_xA0.value = pos_x;
-					document.pointform.form_yA0.value = pos_y;
-					s1xt = pos_x;
-					s1yt = pos_y;
-					break;
-				case 1:
-					document.pointform.form_xA1.value = pos_x;
-					document.pointform.form_yA1.value = pos_y;
-					s2xt = pos_x;
-					s2yt = pos_y;
-					break;
-				case 2:
-					document.pointform.form_xA2.value = pos_x;
-					document.pointform.form_yA2.value = pos_y;
-					s3xt = pos_x;
-					s3yt = pos_y;
-					break;
-				case 3:
-					document.pointform.form_xA3.value = pos_x;
-					document.pointform.form_yA3.value = pos_y;
-					s4xt = pos_x;
-					s4yt = pos_y;
-					break;
-				case 4:
-					document.pointform.form_xA4.value = pos_x;
-					document.pointform.form_yA4.value = pos_y;
-					s5xt = pos_x;
-					s5yt = pos_y;
-					break;
-			}
+
+			document.pointform["form_xA"+squareNum].value = pos_x;
+			document.pointform["form_yA"+squareNum].value = pos_y;
+			coords[squareNum] = [];
+			coords[squareNum].push([pos_x, pos_y]);
 		} else {
 			var canvas = document.getElementById('canvas');
 			if (canvas.getContext){
@@ -106,39 +77,10 @@ span{
 				ctx.fillStyle = "rgba(200, 0, 0, 0.3)";
 				ctx.fillRect(currentX, currentY, (pos_x - currentX), (pos_y - currentY));
 			}
-			switch(squareNum) {
-				case 0:
-					document.pointform.form_xB0.value = pos_x;
-					document.pointform.form_yB0.value = pos_y;
-					s1xb = pos_x;
-					s1yb = pos_y;
-					break;
-				case 1:
-					document.pointform.form_xB1.value = pos_x;
-					document.pointform.form_yB1.value = pos_y;
-					s2xb = pos_x;
-					s2yb = pos_y;
-					break;
-				case 2:
-					document.pointform.form_xB2.value = pos_x;
-					document.pointform.form_yB2.value = pos_y;
-					s3xb = pos_x;
-					s3yb = pos_y;
-					break;
-				case 3:
-					document.pointform.form_xB3.value = pos_x;
-					document.pointform.form_yB3.value = pos_y;
-					s4xb = pos_x;
-					s4yb = pos_y;
-					break;
-				case 4:
-					document.pointform.form_xB4.value = pos_x;
-					document.pointform.form_yB4.value = pos_y;
-					s5xb = pos_x;
-					s5yb = pos_y;
-					break;
-				}
-			}
+			document.pointform["form_xB"+squareNum].value = pos_x;
+			document.pointform["form_yB"+squareNum].value = pos_y;
+			coords[squareNum].push([pos_x, pos_y]);
+		}
 
 		if(clickNum === 1){
 			clickNum++;

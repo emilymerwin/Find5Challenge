@@ -18,7 +18,7 @@
 	var secs = 45, gameOver = 0, missed = 0, win = 0, sq1 = 0, sq2 = 0, sq3 = 0, sq4 = 0, sq5 = 0;
 	var btnName = "startBtn", url = window.location.toString(), query_string = url.split("?"), pcred, dingSound, buzzerSound, winSound, loseSound, G_vmlCanvasManager;
 	$(window).load(function(){  
-		$.get('http://alt.coxnewsweb.com/ajc/swf/find_five_challenge/HTML5/js_files/FindFive_' + query_string[1] + '.js', function(){
+		$.get('js_files/FindFive_' + query_string[1] + '.js', function(){
 			//$.preload([orgImg, altImg]);
 			preloadimages([orgImg, altImg]);
 			var con = document.getElementById("difficulty"), startbutton = document.getElementById("btn");
@@ -29,26 +29,9 @@
 			}
 			//resize hit areas to match resized photos for accessatlanta version
 			var imgScale = $("#altImg").width()/336;
-			s1xt = s1xt*imgScale;
-			s1yt = s1yt*imgScale;
-			s1xb = s1xb*imgScale;
-			s1yb = s1yb*imgScale;
-			s2xt = s2xt*imgScale;
-			s2yt = s2yt*imgScale;
-			s2xb = s2xb*imgScale;
-			s2yb = s2yb*imgScale;
-			s3xt = s3xt*imgScale;
-			s3yt = s3yt*imgScale;
-			s3xb = s3xb*imgScale;
-			s3yb = s3yb*imgScale;
-			s4xt = s4xt*imgScale;
-			s4yt = s4yt*imgScale;
-			s4xb = s4xb*imgScale;
-			s4yb = s4yb*imgScale;
-			s5xt = s5xt*imgScale;
-			s5yt = s5yt*imgScale;
-			s5xb = s5xb*imgScale;
-			s5yb = s5yb*imgScale;
+			for (var i = 0; i < coords.length; i++){
+				coords[i] = coords[i] * imgScale;
+			}
 		});		
 	});//window.load()
 	soundManager.url = 'http://alt.coxnewsweb.com/ajc/_projects_and_planning_group/libraries/soundmanager2/swf/'; // directory where SM2 .SWFs live
@@ -111,29 +94,29 @@
 			ctx.fillStyle = "rgba(255, 205, 5, 0)";
 			ctx.lineWidth = '2';
 			ctx.strokeStyle='rgba(255, 205, 5, 1)';
-			if(pos_x > s1xt && pos_x < s1xb && pos_y > s1yt && pos_y < s1yb){
-				ctx.fillRect(s1xt,s1yt,s1xb-s1xt,s1yb-s1yt);
-				ctx.strokeRect(s1xt,s1yt,s1xb-s1xt,s1yb-s1yt);
+			if(pos_x > coords[0] && pos_x < coords[2] && pos_y > coords[1] && pos_y < coords[3]){
+				ctx.fillRect(coords[0],coords[1],coords[2]-coords[0],coords[3]-coords[1]);
+				ctx.strokeRect(coords[0],coords[1],coords[2]-coords[0],coords[3]-coords[1]);
 				playHit(sq1);
 				sq1 = 1;
-			} else if (pos_x > s2xt && pos_x < s2xb && pos_y > s2yt && pos_y < s2yb){
-				ctx.fillRect(s2xt,s2yt,s2xb-s2xt,s2yb-s2yt);
-				ctx.strokeRect(s2xt,s2yt,s2xb-s2xt,s2yb-s2yt);
+			} else if (pos_x > coords[4] && pos_x < coords[6] && pos_y > coords[5] && pos_y < coords[7]){
+				ctx.fillRect(coords[4],coords[5],coords[6]-coords[4],coords[7]-coords[5]);
+				ctx.strokeRect(coords[4],coords[5],coords[6]-coords[4],coords[7]-coords[5]);
 				playHit(sq2);
 				sq2 = 1;
-			} else if (pos_x > s3xt && pos_x<s3xb && pos_y > s3yt && pos_y < s3yb){
-				ctx.fillRect(s3xt,s3yt,s3xb-s3xt,s3yb-s3yt);
-				ctx.strokeRect(s3xt,s3yt,s3xb-s3xt,s3yb-s3yt);
+			} else if (pos_x > coords[8] && pos_x<coords[10] && pos_y > coords[9] && pos_y < coords[11]){
+				ctx.fillRect(coords[8],coords[9],coords[10]-coords[8],coords[11]-coords[9]);
+				ctx.strokeRect(coords[8],coords[9],coords[10]-coords[8],coords[11]-coords[9]);
 				playHit(sq3);
 				sq3 = 1;
-			} else if (pos_x > s4xt && pos_x < s4xb && pos_y > s4yt && pos_y < s4yb){
-				ctx.fillRect(s4xt, s4yt, s4xb - s4xt, s4yb - s4yt);
-				ctx.strokeRect(s4xt, s4yt, s4xb - s4xt, s4yb - s4yt);
+			} else if (pos_x > coords[12] && pos_x < coords[14] && pos_y > coords[13] && pos_y < coords[15]){
+				ctx.fillRect(coords[12], coords[13], coords[14] - coords[12], coords[15] - coords[13]);
+				ctx.strokeRect(coords[12], coords[13], coords[14] - coords[12], coords[15] - coords[13]);
 				playHit(sq4);
 				sq4 = 1;
-			} else if (pos_x > s5xt && pos_x < s5xb && pos_y > s5yt && pos_y < s5yb){
-				ctx.fillRect(s5xt, s5yt, s5xb - s5xt, s5yb - s5yt);
-				ctx.strokeRect(s5xt, s5yt, s5xb - s5xt, s5yb - s5yt);
+			} else if (pos_x > coords[16] && pos_x < coords[18] && pos_y > coords[17] && pos_y < coords[19]){
+				ctx.fillRect(coords[16], coords[17], coords[18] - coords[16], coords[19] - coords[17]);
+				ctx.strokeRect(coords[16], coords[17], coords[18] - coords[16], coords[19] - coords[17]);
 				playHit(sq5);
 				sq5 = 1;
 			} else {
@@ -248,11 +231,11 @@
 		ctx2.clearRect(0, 0, canvas.width, canvas.height);
 		ctx2.lineWidth = '2';
 		ctx2.strokeStyle = 'rgba(255, 205, 5, 1)';
-		ctx2.strokeRect(s1xt, s1yt, s1xb - s1xt, s1yb - s1yt);
-		ctx2.strokeRect(s2xt, s2yt, s2xb - s2xt, s2yb - s2yt);
-		ctx2.strokeRect(s3xt, s3yt, s3xb - s3xt, s3yb - s3yt);
-		ctx2.strokeRect(s4xt, s4yt, s4xb - s4xt, s4yb - s4yt);
-		ctx2.strokeRect(s5xt, s5yt, s5xb - s5xt, s5yb - s5yt);
+		ctx2.strokeRect(coords[0], coords[1], coords[2] - coords[0], coords[3] - coords[1]);
+		ctx2.strokeRect(coords[4], coords[5], coords[6] - coords[4], coords[7] - coords[5]);
+		ctx2.strokeRect(coords[8], coords[9], coords[10] - coords[8], coords[11] - coords[9]);
+		ctx2.strokeRect(coords[12], coords[13], coords[14] - coords[12], coords[15] - coords[13]);
+		ctx2.strokeRect(coords[16], coords[17], coords[18] - coords[16], coords[19] - coords[17]);
 	}
 </script>
 </head>
