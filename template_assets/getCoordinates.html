@@ -4,11 +4,11 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Find 5: Get coordinates</title>
 <style type="text/css">
-*{
+* {
 	font-family: Arial, sans-serif;
 	font-size: 12px;
 }
-span{
+span {
 	font-weight: normal;
 }
 #original {
@@ -17,6 +17,9 @@ span{
 .img {
 	width: 336px;
 	height: 396px;
+}
+#getCode {
+	padding: 10px;
 }
 </style>
 <script type="text/javascript">
@@ -32,22 +35,12 @@ span{
 		for (var i = 0; i < 5; i++){
 			html += "<h2>Square " + (i + 1) + "</h2>Xtop <input type='text' name='form_xA" + i + "' size='4'> Ytop <input type='text' name='form_yA" + i + "' size='4'> Xbottom <input type='text' name='form_xB" + i + "' size='4'> Ybottom <input type='text' name='form_yB" + i + "' size='4'><button type='button' onclick='changeSq(" + i + ")'>Activate Square " + (i + 1) + "</button>";
 		}
-		con.innerHTML = html += "</form><div><button type='button' onclick='getCode()'>Get Code</button></div>";
+		con.innerHTML = html += "</form><div id='getCode'><button type='button' onclick='getCode()'>Get Code</button></div>";
 	}
-
-	/*function viewSqs(){
-		var ctx = canvas.getContext('2d');
-		ctx.fillStyle = "rgba(0, 0, 200, 0.8)";	 
-		ctx.fillRect(s1xt,s1yt,(s1xb-s1xt),(s1yb-s1yt));
-		ctx.fillRect(s2xt,s2yt,(s2xb-s2xt),(s2yb-s2yt));
-		ctx.fillRect(s3xt,s3yt,(s3xb-s3xt),(s3yb-s3yt));
-		ctx.fillRect(s4xt,s4yt,(s4xb-s4xt),(s4yb-s4yt));
-		ctx.fillRect(s5xt,s5yt,(s5xb-s5xt),(s5yb-s5yt));
-	}*/
 
 	function getCode(){
 		var con = document.getElementById("code");
-		con.innerHTML = "<h4>Copy the below code and past it into a .js file. Upload to alt server Find5 HTML5 folder in js_files</h4><span style='color:red;'>var orgImg = \"" + orgImg + "\";<br>var altImg = \"" + altImg + "\";<br>var difficulty = \"" + difficulty + "\";<br>var coords = [ "+coords+"];<br></span>";
+		con.innerHTML = "<h4>Copy the below code and past it into a .js file. Upload to alt server Find5 HTML5 folder in js_files</h4><span style='color:red;'>var orgImg = \"" + orgImg + "\";<br>var altImg = \"" + altImg + "\";<br>var difficulty = \"" + difficulty + "\";<br>var coords = ["+coords+"];<br></span>";
 		if(pcred != ""){
 			con.innerHTML += "<span style='color:red;'>var pcred = \"" + pcred + "\";<br></span>";
 		}
@@ -58,27 +51,26 @@ span{
 	}
 
 	function point_it(event){
-		pos_x = event.offsetX?(event.offsetX):event.pageX-document.getElementById("pointer_div").offsetLeft;
-		pos_y = event.offsetY?(event.offsetY):event.pageY-document.getElementById("pointer_div").offsetTop;
+		pos_x = event.offsetX?(event.offsetX):event.pageX - document.getElementById("pointer_div").offsetLeft;
+		pos_y = event.offsetY?(event.offsetY):event.pageY - document.getElementById("pointer_div").offsetTop;
+		var canvas = document.getElementById('canvas');
+		context = canvas.getContext("2d");
+		
 		if(clickNum === 1){
 			currentX = pos_x;
 			currentY = pos_y;
-			var curcanvas = document.getElementById('canvas');
-			curcanvasctx = curcanvas.getContext("2d");
 
-			document.pointform["form_xA"+squareNum].value = pos_x;
-			document.pointform["form_yA"+squareNum].value = pos_y;
+			document.pointform["form_xA" + squareNum].value = pos_x;
+			document.pointform["form_yA" + squareNum].value = pos_y;
 			coords[squareNum] = [];
 			coords[squareNum].push([pos_x, pos_y]);
 		} else {
-			var canvas = document.getElementById('canvas');
 			if (canvas.getContext){
-				var ctx = canvas.getContext('2d');
-				ctx.fillStyle = "rgba(200, 0, 0, 0.3)";
-				ctx.fillRect(currentX, currentY, (pos_x - currentX), (pos_y - currentY));
+				context.fillStyle = "rgba(200, 0, 0, 0.3)";
+				context.fillRect(currentX, currentY, (pos_x - currentX), (pos_y - currentY));
 			}
-			document.pointform["form_xB"+squareNum].value = pos_x;
-			document.pointform["form_yB"+squareNum].value = pos_y;
+			document.pointform["form_xB" + squareNum].value = pos_x;
+			document.pointform["form_yB" + squareNum].value = pos_y;
 			coords[squareNum].push([pos_x, pos_y]);
 		}
 

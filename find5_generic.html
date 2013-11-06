@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-<base target="_parent"/>
-<link rel="stylesheet" href="template_assets/vendor/css/gumby_edited.css" type="text/css"/>
-<link rel = "stylesheet" type="text/css" href="template_assets/css/main.css"/>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<base target="_parent" />
+<link rel="stylesheet" href="template_assets/vendor/css/gumby_edited.css" type="text/css" />
+<link rel = "stylesheet" type="text/css" href="template_assets/css/main.css" />
 <script src="http://alt.coxnewsweb.com/ajc/_newsapps/libraries/css/gumby/js/libs/modernizr-2.6.2.min.js"></script>
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
 <script type="text/javascript" src="template_assets/vendor/js/fader.js"></script>
@@ -17,24 +17,23 @@
 <script type="text/javascript">
 	var secs = 45, gameOver = 0, missed = 0, win = 0, sqrs = [0,0,0,0,0];
 	var btnName = "startBtn", url = window.location.toString(), query_string = url.split("?"), pcred, dingSound, buzzerSound, winSound, loseSound, G_vmlCanvasManager;
-	$(window).load(function(){  
+	$(window).load(function(){
 		$.get('js_files/FindFive_' + query_string[1] + '.js', function(){
-			//$.preload([orgImg, altImg]);
 			preloadimages([orgImg, altImg]);
 			var con = document.getElementById("difficulty"), startbutton = document.getElementById("btn");
 			con.innerHTML = "Difficulty: <strong>" + difficulty + "</strong>";
 			startbutton.innerHTML = '<div id="startBtn" class="medium warning btn pretty"><a onclick="startGame()">START GAME!</a></div>';
 			if(pcred){
-				con.innerHTML += "<br><span class='pcredit'>Photo credit: " + pcred + "</span>";//if there is a credit deal with it
+				con.innerHTML += "<br><span class='pcredit'>Photo credit: " + pcred + "</span>"; //if there is a credit deal with it
 			}
 			//resize hit areas to match resized photos for accessatlanta version
 			var imgScale = $("#altImg").width()/336;
 			for (var i = 0; i < coords.length; i++){
 				coords[i] = coords[i] * imgScale;
 			}
-		});		
-	});//window.load()
-	soundManager.url = 'http://alt.coxnewsweb.com/ajc/_projects_and_planning_group/libraries/soundmanager2/swf/'; // directory where SM2 .SWFs live
+		});
+	}); //window.load()
+	soundManager.url = 'http://alt.coxnewsweb.com/ajc/_projects_and_planning_group/libraries/soundmanager2/swf/'; //directory where SM2 .SWFs live
 	soundManager.debugMode = false;
 	soundManager.onready(function () {
 		dingSound = soundManager.createSound({
@@ -56,18 +55,18 @@
 	});//soundManager.onready
 
 	function preloadimages(arr){
-	    var newimages=[],  arr=(typeof arr !== "object")? [arr] : arr; //force arr parameter to always be an array
-	    for (var i = 0; i < arr.length; i++){
-	        newimages[i] = new Image();
-	        newimages[i].src = arr[i];
-	    }
+		var newimages=[],  arr=(typeof arr !== "object")? [arr] : arr; //force arr parameter to always be an array
+		for (var i = 0; i < arr.length; i++){
+			newimages[i] = new Image();
+			newimages[i].src = arr[i];
+		}
 	}
 
 	function startGame () {
 		var startPos = $("#altImg").position(), con = document.getElementById("images");
 		startPos.left = startPos.left + parseInt($("#altImg").css("marginRight")) + parseInt($("#altImg").css('borderLeftWidth'), 10);
 		startPos.top = startPos.top + parseInt($("#altImg").css("marginTop")) + parseInt($("#altImg").css('borderTopWidth'), 10);
-		con.innerHTML = '<div><img class="imgCon" id="orgImg" src=' + orgImg + ' alt="Original image"/></div><div><img class="imgCon" id="altImg" src=' + altImg + ' alt="Altered image"/><canvas onclick="point_it(event)" height="' + $("#altImg").height() + '" width="' + $("#altImg").width() + '" style="left:' + startPos.left + 'px; top:' + startPos.top + 'px" id="canvas"></canvas></div>';
+		con.innerHTML = '<div><img class="imgCon" id="orgImg" src=' + orgImg + ' alt="Original image" /></div><div><img class="imgCon" id="altImg" src=' + altImg + ' alt="Altered image" /><canvas onclick="point_it(event)" height="' + $("#altImg").height() + '" width="' + $("#altImg").width() + '" style="left:' + startPos.left + 'px; top:' + startPos.top + 'px" id="canvas"></canvas></div>';
 		canvasInit(); //for ExCanvas
 		document.getElementById("btn").innerHTML = "";
 		timedCount();
@@ -88,12 +87,12 @@
 			pos_x = event.offsetX?(event.offsetX):event.pageX - document.getElementById("altImg").offsetLeft - 2.5;
 			pos_y = event.offsetY?(event.offsetY):event.pageY - document.getElementById("altImg").offsetTop - 2.5;
 			var canvas = document.getElementById('canvas');
-			if (canvas.getContext){
+			if(canvas.getContext){
 				var ctx = canvas.getContext('2d');
 			}
 			ctx.fillStyle = "rgba(255, 205, 5, 0)";
 			ctx.lineWidth = '2';
-			ctx.strokeStyle='rgba(255, 205, 5, 1)';
+			ctx.strokeStyle ='rgba(255, 205, 5, 1)';
 
 			//check if the click falls within any of the answer areas
 			var j = 0;
@@ -126,7 +125,7 @@
 			document.getElementById("miss" + missed).className = "missed";
 			if(missed > 2){
 				stopGame();
-			} else{
+			} else {
 				if(!soundManager.html5Only){
 					buzzerSound.play();
 				}
@@ -144,7 +143,7 @@
 	function timedCount(){
 		if(secs > 0 && !gameOver){
 			secs--;
-			if(secs < 10 ){
+			if(secs < 10){
 				document.getElementById("timer").innerHTML = ":0" + secs;
 			} else {
 				document.getElementById("timer").innerHTML = ":" + secs;
@@ -185,17 +184,17 @@
 			context.font = "15px sans-serif";
 			wrapText("You couldn't find them all?", y*2);
 			gameCenter();
-			document.getElementById("answersBtn").innerHTML = "<a onClick='showAns()'><div style='cursor:pointer;'><img src='template_assets/img/answers.png' height='22' width='100' alt='Show answers?'/></div></a>";
+			document.getElementById("answersBtn").innerHTML = "<a onClick='showAns()'><div style='cursor:pointer;'><img src='template_assets/img/answers.png' height='22' width='100' alt='Show answers?' /></div></a>";
 		}
 		function gameCenter(){
 			context.fillStyle = "#FFFFFF";
 			context.font = "12px sans-serif";
 			wrapText("Check out the Find Five Game Center for more.", y*3+10);
 			canvas.addEventListener( "click", function (){
-			    window.parent.location = "http://www.accessatlanta.com/s/games/";
+				window.parent.location = "http://www.accessatlanta.com/s/games/";
 			});
 		}
-        function wrapText(text, y) {
+		function wrapText(text, y) {
 			var words = text.split(' '), line = '';
 			for(var n = 0; n < words.length; n++) {
 				var testLine = line + words[n] + ' ';
@@ -256,12 +255,12 @@ document.body.onclick = function(e){
 	Want to play more? <a href="http://www.accessatlanta.com/list/entertainment/games/find-five-challenge/aD4N/"><strong>Click here!</strong></a>
 	<script type="text/javascript">var switchTo5x=true;</script>
 	<script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
-	<script type="text/javascript">stLight.options({publisher: "2699b399-4f7a-491d-9191-230bcca8a974"}); </script>
+	<script type="text/javascript">stLight.options({publisher: "2699b399-4f7a-491d-9191-230bcca8a974"});</script>
 </div>
 <div id="container" class="twelve colgrid">
 	<div class="row">
-		<div class="three columns lotto"><a href="http://ad.doubleclick.net/clk;275800507;102866268;i" traget="_blank"><img height="85" width="130" src="template_assets/img/galottery.png" alt="Sponsored by the Georgia Lottery"/></a><a href="http://ad.doubleclick.net/jump/N5215.7435.4004671378521/B7838315.6;sz=1x1;ord=[timestamp]?"><img src="http://ad.doubleclick.net/ad/N5215.7435.4004671378521/B7838315.6;sz=1x1;ord=[timestamp]?" border=0 width=1 height=1 ALT="Advertisement"></a></div>
-		<div id="logo" class="nine columns"><img src="template_assets/img/logo.png" alt="Find Find Challenge"/></div>
+		<div class="three columns lotto"><a href="http://ad.doubleclick.net/clk;275800507;102866268;i" traget="_blank"><img height="85" width="130" src="template_assets/img/galottery.png" alt="Sponsored by the Georgia Lottery" /></a><a href="http://ad.doubleclick.net/jump/N5215.7435.4004671378521/B7838315.6;sz=1x1;ord=[timestamp]?"><img src="http://ad.doubleclick.net/ad/N5215.7435.4004671378521/B7838315.6;sz=1x1;ord=[timestamp]?" border=0 width=1 height=1 ALT="Advertisement" /></a></div>
+		<div id="logo" class="nine columns"><img src="template_assets/img/logo.png" alt="Find Find Challenge" /></div>
 	</div>
 	<ul id="head" class="row subnav"><!--what is that ID doing?-->
 		<li id="text" class="seven columns alpha"><p>Find five differences between the original photo on the left and the altered photo on the right. Click each difference on the right-hand photo. You get three misses.</p></li>
@@ -270,17 +269,17 @@ document.body.onclick = function(e){
 	</ul> 
 	<div id="imageLabels" class="row">
 		<div class="label six columns alpha" id="org">
-			<div class="arrow"><img src="template_assets/img/arrow.png" alt=""/></div>
+			<div class="arrow"><img src="template_assets/img/arrow.png" alt="" /></div>
 			<div class="arrowLabel">ORIGINAL PHOTO</div>
 		</div>
 		<div class="label six columns omega" id="alt">
-			<div class="arrow"><img src="template_assets/img/arrow.png" alt=""/></div>
+			<div class="arrow"><img src="template_assets/img/arrow.png" alt="" /></div>
 			<div class="arrowLabel">ALTERED PHOTO</div>
 		</div>
 	</div>
 	<div id="images">
-		<div><img class="imgCon" id="orgImg" src="template_assets/img/example_org.jpg" alt="Example: Original"/></div>
-		<div><img class="imgCon" id="altImg" src="template_assets/img/example_alt.jpg" alt="Example: Altered"/></div>
+		<div><img class="imgCon" id="orgImg" src="template_assets/img/example_org.jpg" alt="Example: Original" /></div>
+		<div><img class="imgCon" id="altImg" src="template_assets/img/example_alt.jpg" alt="Example: Altered" /></div>
 	</div>
 	<div class="row">
 		<div id="difficulty" class="difficulty six columns"></div>

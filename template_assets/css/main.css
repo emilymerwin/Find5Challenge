@@ -13,7 +13,7 @@ body {
 	margin: 0 !important;
 }
 #container {
-	background-image: url(http://alt.coxnewsweb.com/ajc/swf/find_five_challenge/HTML5/template_assets/img/background.jpg);
+	background-image: url(../img/background.jpg);
 	background-color: #2327BF;
 	/*max-width:610px;*/
 	/*min-height: 590px;*/
@@ -90,7 +90,7 @@ body {
 	cursor: pointer;
 }
 
-#canvas{
+#canvas {
 	position: absolute;
 	display: block;
 	cursor: pointer;
@@ -109,7 +109,7 @@ body {
 	float: right;
 }
 .missed {
-	background-image: url(http://alt.coxnewsweb.com/ajc/swf/find_five_challenge/HTML5/template_assets/img/miss.png);
+	background-image: url(../img/miss.png);
 	float: left;
 }
 #missTxt {
