@@ -20,7 +20,7 @@ span{
 }
 </style>
 <script type="text/javascript">
-	var squareNum = 1, clickNum = 1, currentY, currentX, difficulty, pcred;
+	var squareNum = 0, clickNum = 1, currentY, currentX, difficulty, pcred;
 	var s1xt, s1yt, s1xb, s1yb, s2xt, s2yt, s2xb, s2yb, s3xt, s3yt, s3xb, s3yb, s4xt, s4yt, s4xb, s4yb, s5xt, s5yt, s5xb, s5yb;
 
 	function loadImgs(form){
@@ -29,11 +29,9 @@ span{
 		difficulty = form.dif.value;
 		pcred = form.pcred.value;
 		var con = document.getElementById("form");
-		var c = 1;
 		var html = "<form name='pointform' method='post'><div style='width:700px'><div id='original'><strong>Original Image</strong><div class='img' style='background-image:url(\"" + orgImg + "\");'></div></div><div id='altered' style='float:right'><strong>Altered Image</strong><div id='pointer_div' class='img' onclick='point_it(event)' style='background-image:url(\"" + altImg + "\");'><canvas id='canvas' width='336px' height='396px'></canvas></div></div></div>";
 		for (var i = 0; i < 5; i++){
-			html += "<h2>Square " + (i + 1) + "</h2>Xtop <input type='text' name='form_x" + c + "' size='4'> Ytop <input type='text' name='form_y" + c + "' size='4'> Xbottom <input type='text' name='form_x" + (c + 1)+"' size='4'> Ybottom <input type='text' name='form_y" + (c+1)+ "' size='4'><button type='button' onclick='changeSq(" + (i + 1)+")'>Activate Square " + (i + 1) + "</button>";
-			c = c+2;
+			html += "<h2>Square " + (i + 1) + "</h2>Xtop <input type='text' name='form_xA" + i + "' size='4'> Ytop <input type='text' name='form_yA" + i + "' size='4'> Xbottom <input type='text' name='form_xB" + i + "' size='4'> Ybottom <input type='text' name='form_yB" + i + "' size='4'><button type='button' onclick='changeSq(" + i + ")'>Activate Square " + (i + 1) + "</button>";
 		}
 		con.innerHTML = html += "</form><div><button type='button' onclick='getCode()'>Get Code</button></div>";
 	}
@@ -73,33 +71,33 @@ span{
 			curcanvasctx = curcanvas.getContext("2d");
 			//curcanvasctx.clearRect(0, 0, curcanvas.width, curcanvas.height);
 			switch(squareNum) {
-				case 1:
-					document.pointform.form_x1.value = pos_x;
-					document.pointform.form_y1.value = pos_y;
+				case 0:
+					document.pointform.form_xA0.value = pos_x;
+					document.pointform.form_yA0.value = pos_y;
 					s1xt = pos_x;
 					s1yt = pos_y;
 					break;
-				case 2:
-					document.pointform.form_x3.value = pos_x;
-					document.pointform.form_y3.value = pos_y;
+				case 1:
+					document.pointform.form_xA1.value = pos_x;
+					document.pointform.form_yA1.value = pos_y;
 					s2xt = pos_x;
 					s2yt = pos_y;
 					break;
-				case 3:
-					document.pointform.form_x5.value = pos_x;
-					document.pointform.form_y5.value = pos_y;
+				case 2:
+					document.pointform.form_xA2.value = pos_x;
+					document.pointform.form_yA2.value = pos_y;
 					s3xt = pos_x;
 					s3yt = pos_y;
 					break;
-				case 4:
-					document.pointform.form_x7.value = pos_x;
-					document.pointform.form_y7.value = pos_y;
+				case 3:
+					document.pointform.form_xA3.value = pos_x;
+					document.pointform.form_yA3.value = pos_y;
 					s4xt = pos_x;
 					s4yt = pos_y;
 					break;
-				case 5:
-					document.pointform.form_x9.value = pos_x;
-					document.pointform.form_y9.value = pos_y;
+				case 4:
+					document.pointform.form_xA4.value = pos_x;
+					document.pointform.form_yA4.value = pos_y;
 					s5xt = pos_x;
 					s5yt = pos_y;
 					break;
@@ -112,33 +110,33 @@ span{
 				ctx.fillRect(currentX, currentY, (pos_x - currentX), (pos_y - currentY));
 			}
 			switch(squareNum) {
-				case 1:
-					document.pointform.form_x2.value = pos_x;
-					document.pointform.form_y2.value = pos_y;
+				case 0:
+					document.pointform.form_xB0.value = pos_x;
+					document.pointform.form_yB0.value = pos_y;
 					s1xb = pos_x;
 					s1yb = pos_y;
 					break;
-				case 2:
-					document.pointform.form_x4.value = pos_x;
-					document.pointform.form_y4.value = pos_y;
+				case 1:
+					document.pointform.form_xB1.value = pos_x;
+					document.pointform.form_yB1.value = pos_y;
 					s2xb = pos_x;
 					s2yb = pos_y;
 					break;
-				case 3:
-					document.pointform.form_x6.value = pos_x;
-					document.pointform.form_y6.value = pos_y;
+				case 2:
+					document.pointform.form_xB2.value = pos_x;
+					document.pointform.form_yB2.value = pos_y;
 					s3xb = pos_x;
 					s3yb = pos_y;
 					break;
-				case 4:
-					document.pointform.form_x8.value = pos_x;
-					document.pointform.form_y8.value = pos_y;
+				case 3:
+					document.pointform.form_xB3.value = pos_x;
+					document.pointform.form_yB3.value = pos_y;
 					s4xb = pos_x;
 					s4yb = pos_y;
 					break;
-				case 5:
-					document.pointform.form_x10.value = pos_x;
-					document.pointform.form_y10.value = pos_y;
+				case 4:
+					document.pointform.form_xB4.value = pos_x;
+					document.pointform.form_yB4.value = pos_y;
 					s5xb = pos_x;
 					s5yb = pos_y;
 					break;
