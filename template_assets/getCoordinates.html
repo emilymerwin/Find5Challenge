@@ -14,7 +14,7 @@ span{
 #original {
 	float: left;
 }
-.img, #canvas {
+.img {
 	width: 336px;
 	height: 396px;
 }
@@ -29,7 +29,13 @@ span{
 		difficulty = form.dif.value;
 		pcred = form.pcred.value;
 		var con = document.getElementById("form");
-		con.innerHTML = "<form name='pointform' method='post'><div style='width:700px'><div id='original' style='float:left'><strong>Original Image</strong><div style = 'background-image:url(\""+orgImg+"\");width:336px;height:396px;'></div></div><div id='altered' style='float:right'><strong>Altered Image</strong><div id='pointer_div' onclick='point_it(event)' style = 'background-image:url(\""+altImg+"\");width:336px;height:396px;'><canvas width='336px' height='396px' id='canvas'></canvas></div></div></div><strong>Square 1</strong><br/>Xtop = <input type='text' name='form_x1' size='4' /> Ytop = <input type='text' name='form_y1' size='4' />Xbottom = <input type='text' name='form_x2' size='4' /> Ybottom = <input type='text' name='form_y2' size='4' /><button type='button' onclick='changeSq(1)'>Activate Square 1</button><br/><strong>Square 2</strong><br/>Xtop = <input type='text' name='form_x3' size='4' /> Ytop = <input type='text' name='form_y3' size='4' />Xbottom = <input type='text' name='form_x4' size='4' /> Ybottom = <input type='text' name='form_y4' size='4' /><button type='button' onclick='changeSq(2)'>Activate Square 2</button><br/><strong>Square 3</strong><br/>Xtop = <input type='text' name='form_x5' size='4' /> Ytop = <input type='text' name='form_y5' size='4' />Xbottom = <input type='text' name='form_x6' size='4' /> Ybottom = <input type='text' name='form_y6' size='4' /><button type='button' onclick='changeSq(3)'>Activate Square 3</button><br/><strong>Square 4</strong><br/>Xtop = <input type='text' name='form_x7' size='4' /> Ytop = <input type='text' name='form_y7' size='4' />Xbottom = <input type='text' name='form_x8' size='4' /> Ybottom = <input type='text' name='form_y8' size='4' /><button type='button' onclick='changeSq(4)'>Activate Square 4</button><br/><strong>Square 5</strong><br/>Xtop = <input type='text' name='form_x9' size='4' /> Ytop = <input type='text' name='form_y9' size='4' />Xbottom = <input type='text' name='form_x10' size='4' /> Ybottom = <input type='text' name='form_y10' size='4' /><button type='button' onclick='changeSq(5)'>Activate Square 5</button></form><div><button type='button' onclick='getCode()'>Get Code</button></div>";
+		var c = 1;
+		var html = "<form name='pointform' method='post'><div style='width:700px'><div id='original'><strong>Original Image</strong><div class='img' style='background-image:url(\"" + orgImg + "\");'></div></div><div id='altered' style='float:right'><strong>Altered Image</strong><div id='pointer_div' class='img' onclick='point_it(event)' style='background-image:url(\"" + altImg + "\");'><canvas id='canvas' width='336px' height='396px'></canvas></div></div></div>";
+		for (var i = 0; i < 5; i++){
+			html += "<h2>Square " + (i + 1) + "</h2>Xtop <input type='text' name='form_x" + c + "' size='4'> Ytop <input type='text' name='form_y" + c + "' size='4'> Xbottom <input type='text' name='form_x" + (c + 1)+"' size='4'> Ybottom <input type='text' name='form_y" + (c+1)+ "' size='4'><button type='button' onclick='changeSq(" + (i + 1)+")'>Activate Square " + (i + 1) + "</button>";
+			c = c+2;
+		}
+		con.innerHTML = html += "</form><div><button type='button' onclick='getCode()'>Get Code</button></div>";
 	}
 
 	/*function viewSqs(){
