@@ -70,8 +70,8 @@
 		return(titlestring);
 	}
 	function splitTitle(title){
-		var titlesub = title.substring(20, title.length);
-		var split_array = titlesub.split(" ");
+		var tmp = title.split("Challenge: ");
+		var split_array = tmp[1].split(" ");
 		return(split_array);
 	}
 
