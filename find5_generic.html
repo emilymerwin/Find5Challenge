@@ -15,10 +15,13 @@
 <title>Georgia Lottery Find 5 Challenge</title>
 <meta name="viewport" content="initial-scale=1.0" />
 <script type="text/javascript">
-	var secs = 45, gameOver = 0, missed = 0, win = 0, sqrs = [0,0,0,0,0];
+	var secs = 45, gameOver = 0, missed = 0, win = 0, sqrs = [0,0,0,0,0], coords = [];
 	var btnName = "startBtn", url = window.location.toString(), query_string = url.split("?"), pcred, dingSound, buzzerSound, winSound, loseSound, G_vmlCanvasManager;
 	$(window).load(function(){
 		$.get('js_files/FindFive_' + query_string[1] + '.js', function(){
+			if(coords.length === 0){ //compatibility with old getCoordinates form
+				coords.push(s1xt, s1yt, s1xb, s1yb, s2xt, s2yt, s2xb, s2yb, s3xt, s3yt, s3xb, s3yb, s4xt, s4yt, s4xb, s4yb, s5xt, s5yt, s5xb, s5yb);
+			};
 			preloadimages([orgImg, altImg]);
 			var con = document.getElementById("difficulty"), startbutton = document.getElementById("btn");
 			con.innerHTML = "Difficulty: <strong>" + difficulty + "</strong>";
