@@ -38,3 +38,13 @@
 .ajclogo {
 	padding: 5px 0px 5px 25px;
 }
+@media only screen and (max-width: 610px) {
+	body {
+		font-size: .8em;
+	}
+	h1 {
+		font-size: .9em !important;
+		text-shadow: none;
+		font-weight: normal;
+	}
+}
