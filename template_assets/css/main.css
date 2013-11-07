@@ -16,6 +16,10 @@ body {
 	background-image: url(../img/background.jpg);
 	background-color: #2327BF;
 }
+#max {
+	max-width: 725px;
+	margin: auto;
+}
 #logo {
 	padding: 10px 0px;
 }
@@ -40,16 +44,15 @@ body {
 	border: white solid 2px;
 }
 #orgImg {
-	max-width: 280px;
 	float: left;
 	margin: 0 14px 5px 14px;
 }
-#altImg {
-	max-width: 280px;
+@media only screen and (max-width: 720px) {
+	#orgImg, #altImg { max-width: 280px; }
 }
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 609px) {
 	#orgImg, #altImg { max-width: 46%; margin: 0 6px; }
-	#altImg, #startBtn, #playAgain{ float: right; }
+	#startBtn, #playAgain{ float: right; }
 	.lotto{ float: left; }
 }
 

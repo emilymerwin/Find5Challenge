@@ -36,7 +36,7 @@
 					} else{
 						s = 0;
 					}
-					var entry = result.feed.entries[i], bullet = document.createElement('li'), link = document.createElement('a'), myLink = "http://alt.coxnewsweb.com/ajc/swf/find_five_challenge/HTML5/find5_ipad.html?"+parseTitle(entry.title);
+					var entry = result.feed.entries[i], bullet = document.createElement('li'), link = document.createElement('a'), myLink = "find5_generic.html?"+parseTitle(entry.title);
 					link.setAttribute('href', myLink);
 					link.setAttribute('data-ajax', false);
 					link.appendChild(document.createTextNode(printTitle(entry.title)));
