@@ -102,11 +102,13 @@
 			var hit = false;
 			for(var i = 0; i < 5; i++){
 				if(pos_x > coords[j] && pos_x < coords[j+2] && pos_y > coords[j+1] && pos_y < coords[j+3]){
+					if(!sqrs[i]){ //if this answer hasn't been found yet
+						ctx.fillRect(coords[j], coords[j+1], coords[j+2] - coords[j], coords[j+3] - coords[j+1]);
+						ctx.strokeRect(coords[j], coords[j+1], coords[j+2] - coords[j], coords[j+3] - coords[j+1]);
+						playHit(sqrs[i]);
+						sqrs[i] = 1;
+					}
 					hit = true;
-					ctx.fillRect(coords[j], coords[j+1], coords[j+2] - coords[j], coords[j+3] - coords[j+1]);
-					ctx.strokeRect(coords[j], coords[j+1], coords[j+2] - coords[j], coords[j+3] - coords[j+1]);
-					playHit(sqrs[i]);
-					sqrs[i] = 1;
 					j = j + 4;
 					break;
 				}
