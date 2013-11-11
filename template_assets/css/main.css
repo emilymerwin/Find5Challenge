@@ -56,11 +56,11 @@ body {
 	.lotto{ float: left; }
 }
 
-.difficulty {
+#difficulty {
 	color: #FFCC00;
 	font-size: 14px;
 }
-.difficulty strong {
+#difficulty strong {
 	font-size: 14px;
 }
 .pcredit {
