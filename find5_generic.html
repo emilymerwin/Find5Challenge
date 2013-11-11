@@ -184,20 +184,22 @@
 			if(!soundManager.html5Only){
 				loseSound.play();
 			}
+			document.getElementById("answersBtn").innerHTML = "<div class='small info btn pretty'><a onClick='showAns()'>GET ANSWERS?</a></div>";
 			context.fillStyle = "#ffcc00";
 			context.fillText("What?", x, y);
 			context.font = "15px sans-serif";
 			wrapText("You couldn't find them all?", y*2);
 			gameCenter();
-			document.getElementById("answersBtn").innerHTML = "<a onClick='showAns()'><div style='cursor:pointer;'><img src='template_assets/img/answers.png' height='22' width='100' alt='Show answers?' /></div></a>";
 		}
 		function gameCenter(){
 			context.fillStyle = "#FFFFFF";
 			context.font = "12px sans-serif";
 			wrapText("Check out the Find Five Game Center for more.", y*3+10);
-			canvas.addEventListener( "click", function (){
-				window.parent.location = "http://www.accessatlanta.com/s/games/";
-			});
+			if (canvas.addEventListener) { //for IE8 - not supporting it here because of bugs
+				canvas.addEventListener( "click", function (){
+					window.parent.location = "http://www.accessatlanta.com/s/games/";
+				});
+			}
 		}
 		function wrapText(text, y) {
 			var words = text.split(' '), line = '';

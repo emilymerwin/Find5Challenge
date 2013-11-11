@@ -83,11 +83,12 @@ body {
 	height: 46px;
 	margin: 0 20px 0 0;
 }
-#answersBtn {
-	height: 22px;
-	width: 100px;
+#answersBtn a {
+	font-size: 12px;
+	font-weight: normal;
+	text-shadow: none;
 }
-#startBtn, #playAgain {
+.btn {
 	cursor: pointer;
 }
 
