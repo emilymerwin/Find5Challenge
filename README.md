@@ -7,7 +7,7 @@
 ###ToDo
 - [ ] alignment of some labels and buttons is off on mobile
 - [ ] Current audio format not supported by iOS
-- [ ] Hide share buttons on un-wrapped version served from iPad - maybe do this by detecting if it's in an iframe? <a href="http://stackoverflow.com/questions/326069/how-to-identify-if-a-webpage-is-being-loaded-inside-an-iframe-or-directly-into-t">link</a>
+- [ ] Hide "Want to play more? Click here" on un-wrapped version served from iPad - maybe do this by detecting if it's in an iframe? <a href="http://stackoverflow.com/questions/326069/how-to-identify-if-a-webpage-is-being-loaded-inside-an-iframe-or-directly-into-t">link</a>
 
 ####Thoughts
 - [ ] Would it be more efficient to create buttons or something from the hit areas and trigger the hit on click and miss when the background is clicked? Rather than check all 4 coordinates of each answer for every click...
