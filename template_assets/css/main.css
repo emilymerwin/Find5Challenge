@@ -70,7 +70,7 @@ body {
 	text-align: left;
 }
 
-#startBtn, #answersBtn {
+#btn, #answersBtn {
 	display: none;
 }
 #answersBtn a {

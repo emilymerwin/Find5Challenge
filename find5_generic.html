@@ -25,7 +25,7 @@
 			preloadimages([orgImg, altImg]);
 			var con = document.getElementById("difficulty");
 			con.innerHTML = "Difficulty: <strong>" + difficulty + "</strong>";
-			$("#startBtn").show().on("click", function() { startGame(); }); //hidden by default so user can't try to start game before it loads
+			$("#btn").show().on("click", function() { startGame(); }); //hidden by default so user can't try to start game before it loads
 			if(pcred){
 				con.innerHTML += "<br><span class='pcredit'>Photo credit: " + pcred + "</span>"; //if there is a credit deal with it
 			}
@@ -71,7 +71,7 @@
 		startPos.top = startPos.top + parseInt($("#altImg").css("marginTop")) + parseInt($("#altImg").css('borderTopWidth'), 10);
 		con.innerHTML = '<div><img class="imgCon" id="orgImg" src=' + orgImg + ' alt="Original image" /></div><div><img class="imgCon" id="altImg" src=' + altImg + ' alt="Altered image" /><canvas onclick="point_it(event)" height="' + $("#altImg").height() + '" width="' + $("#altImg").width() + '" style="left:' + startPos.left + 'px; top:' + startPos.top + 'px" id="canvas"></canvas></div>';
 		canvasInit(); //for ExCanvas
-		$("#startBtn").hide();
+		$("#btn").hide();
 		timedCount();
 	}
 
@@ -163,7 +163,8 @@
 
 	function stopGame(){
 		gameOver = 1;
-		$("#startBtn").show().html("<a>PLAY AGAIN?</a>").on("click", function(){ reloadPage(); })
+		$("#btn").show().on("click", function(){ reloadPage(); });
+		$("#startBtn").html("<a>PLAY AGAIN?</a>");
 		var canvas = document.getElementById('canvas'), context = canvas.getContext("2d");
 		var maxWidth = canvas.width-10, lineHeight = 25; x = maxWidth/2 + 5, y = parseInt(canvas.height/5); //for wrapText()
 		context.fillStyle = "rgba(0, 0, 0, .8)";
