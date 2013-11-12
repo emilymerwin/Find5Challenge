@@ -23,9 +23,9 @@
 				coords.push(s1xt, s1yt, s1xb, s1yb, s2xt, s2yt, s2xb, s2yb, s3xt, s3yt, s3xb, s3yb, s4xt, s4yt, s4xb, s4yb, s5xt, s5yt, s5xb, s5yb);
 			};
 			preloadimages([orgImg, altImg]);
-			var con = document.getElementById("difficulty"), startbutton = document.getElementById("btn");
+			var con = document.getElementById("difficulty");
 			con.innerHTML = "Difficulty: <strong>" + difficulty + "</strong>";
-			startbutton.innerHTML = '<div id="startBtn" class="medium warning btn pretty"><a onclick="startGame()">START GAME!</a></div>';
+			$("#startBtn").show();
 			if(pcred){
 				con.innerHTML += "<br><span class='pcredit'>Photo credit: " + pcred + "</span>"; //if there is a credit deal with it
 			}
@@ -71,7 +71,7 @@
 		startPos.top = startPos.top + parseInt($("#altImg").css("marginTop")) + parseInt($("#altImg").css('borderTopWidth'), 10);
 		con.innerHTML = '<div><img class="imgCon" id="orgImg" src=' + orgImg + ' alt="Original image" /></div><div><img class="imgCon" id="altImg" src=' + altImg + ' alt="Altered image" /><canvas onclick="point_it(event)" height="' + $("#altImg").height() + '" width="' + $("#altImg").width() + '" style="left:' + startPos.left + 'px; top:' + startPos.top + 'px" id="canvas"></canvas></div>';
 		canvasInit(); //for ExCanvas
-		document.getElementById("btn").innerHTML = "";
+		$("#startBtn").hide();
 		timedCount();
 	}
 
@@ -163,7 +163,7 @@
 
 	function stopGame(){
 		gameOver = 1;
-		document.getElementById("btn").innerHTML = "<div id='playAgain' class='medium warning btn pretty'><a onclick='reloadPage()'>PLAY AGAIN?</a></div>";
+		$("#startBtn").show().html("<a onclick='reloadPage()'>PLAY AGAIN?</a>"))
 		var canvas = document.getElementById('canvas'), context = canvas.getContext("2d");
 		var maxWidth = canvas.width-10, lineHeight = 25; x = maxWidth/2 + 5, y = parseInt(canvas.height/5); //for wrapText()
 		context.fillStyle = "rgba(0, 0, 0, .8)";
@@ -267,7 +267,9 @@ document.body.onclick = function(e){
 	<ul class="row subnav">
 		<li id="text" class="seven columns alpha"><p>Find five differences between the original photo on the left and the altered photo on the right. Click each difference on the right-hand photo. You get three misses.</p></li>
 		<li id="timer" class="two columns">:45</li>
-		<li id="btn" class="three columns omega"></li>
+		<li id="btn" class="three columns omega">
+			<div id="startBtn" class="medium warning btn pretty"><a onclick="startGame()">START GAME!</a></div>
+		</li>
 	</ul> 
 	<div id="imageLabels" class="row">
 		<div class="label six columns alpha" id="org">
