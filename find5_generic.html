@@ -25,7 +25,7 @@
 			preloadimages([orgImg, altImg]);
 			var con = document.getElementById("difficulty");
 			con.innerHTML = "Difficulty: <strong>" + difficulty + "</strong>";
-			$("#startBtn").show();
+			$("#startBtn").show().on("click", function() { startGame(); }); //hidden by default so user can't try to start game before it loads
 			if(pcred){
 				con.innerHTML += "<br><span class='pcredit'>Photo credit: " + pcred + "</span>"; //if there is a credit deal with it
 			}
@@ -163,7 +163,7 @@
 
 	function stopGame(){
 		gameOver = 1;
-		$("#startBtn").show().html("<a onclick='reloadPage()'>PLAY AGAIN?</a>"))
+		$("#startBtn").show().html("<a>PLAY AGAIN?</a>").on("click", function(){ reloadPage(); })
 		var canvas = document.getElementById('canvas'), context = canvas.getContext("2d");
 		var maxWidth = canvas.width-10, lineHeight = 25; x = maxWidth/2 + 5, y = parseInt(canvas.height/5); //for wrapText()
 		context.fillStyle = "rgba(0, 0, 0, .8)";
@@ -183,7 +183,7 @@
 			if(!soundManager.html5Only){
 				loseSound.play();
 			}
-			$("#answersBtn").show();
+			$("#answersBtn").show().on("click", function(){ showAns(); });
 			context.fillStyle = "#ffcc00";
 			context.fillText("What?", x, y);
 			context.font = "15px sans-serif";
@@ -268,7 +268,7 @@ document.body.onclick = function(e){
 		<li id="text" class="seven columns alpha"><p>Find five differences between the original photo on the left and the altered photo on the right. Click each difference on the right-hand photo. You get three misses.</p></li>
 		<li id="timer" class="two columns">:45</li>
 		<li id="btn" class="three columns omega">
-			<div id="startBtn" class="medium warning btn pretty"><a onclick="startGame()">START GAME!</a></div>
+			<div id="startBtn" class="medium warning btn pretty"><a>START GAME!</a></div>
 		</li>
 	</ul> 
 	<div id="imageLabels" class="row">
@@ -288,7 +288,7 @@ document.body.onclick = function(e){
 	<div class="row">
 		<div id="difficulty" class="six columns"></div>
 		<div id="answersBtn" class="three columns">
-			<div class='small info btn pretty'><a onclick="showAns()">GET ANSWERS?</a></div>
+			<div class='small info btn pretty'><a>GET ANSWERS?</a></div>
 		</div>
 		<div id="misses" class="four columns omega">
 			<div id="miss1" class="unmissed"></div>
