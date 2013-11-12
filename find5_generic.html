@@ -183,7 +183,7 @@
 			if(!soundManager.html5Only){
 				loseSound.play();
 			}
-			document.getElementById("answersBtn").innerHTML = "<div class='small info btn pretty'><a onClick='showAns()'>GET ANSWERS?</a></div>";
+			$("#answersBtn").show();
 			context.fillStyle = "#ffcc00";
 			context.fillText("What?", x, y);
 			context.font = "15px sans-serif";
@@ -285,7 +285,9 @@ document.body.onclick = function(e){
 	</div>
 	<div class="row">
 		<div id="difficulty" class="six columns"></div>
-		<div id="answersBtn" class="three columns"></div>
+		<div id="answersBtn" class="three columns">
+			<div class='small info btn pretty'><a onclick="showAns()">GET ANSWERS?</a></div>
+		</div>
 		<div id="misses" class="four columns omega">
 			<div id="miss1" class="unmissed"></div>
 			<div id="miss2" class="unmissed"></div>

@@ -70,6 +70,9 @@ body {
 	text-align: left;
 }
 
+#answersBtn {
+	display: none;
+}
 #answersBtn a {
 	font-size: 12px;
 	font-weight: normal;
