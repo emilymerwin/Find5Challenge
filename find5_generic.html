@@ -23,11 +23,10 @@
 				coords.push(s1xt, s1yt, s1xb, s1yb, s2xt, s2yt, s2xb, s2yb, s3xt, s3yt, s3xb, s3yb, s4xt, s4yt, s4xb, s4yb, s5xt, s5yt, s5xb, s5yb);
 			};
 			preloadimages([orgImg, altImg]);
-			var con = document.getElementById("difficulty");
-			con.innerHTML = "Difficulty: <strong>" + difficulty + "</strong>";
 			$("#btn").show().on("click", function() { startGame(); }); //hidden by default so user can't try to start game before it loads
+			$("#difficulty").html("Difficulty: <strong>" + difficulty + "</strong>");
 			if(pcred){
-				con.innerHTML += "<br><span class='pcredit'>Photo credit: " + pcred + "</span>"; //if there is a credit deal with it
+				$("#difficulty").append("<br><span class='pcredit'>Photo credit: " + pcred + "</span>"); //if there is a credit deal with it
 			}
 			//resize hit areas to match resized photos for accessatlanta version
 			var imgScale = $("#altImg").width()/336;
