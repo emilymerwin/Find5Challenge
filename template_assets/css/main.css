@@ -25,6 +25,7 @@ body {
 	color: white;
 	text-shadow: #2E2E2E 0.1em 0.1em 0.2em;
 	font-size: 12px;
+	margin-right: 10px;
 }
 #timer {
 	color: white;
@@ -49,6 +50,7 @@ body {
 	#orgImg, #altImg { max-width: 46%; margin: 0 6px; }
 	#startBtn { float: right; }
 	.lotto{ float: left; }
+	#text p { margin-right: 0; }
 }
 
 #difficulty {
