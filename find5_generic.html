@@ -30,8 +30,10 @@
 			}
 			//resize hit areas to match resized photos for accessatlanta version
 			var imgScale = $("#altImg").width()/336;
-			for (var i = 0; i < coords.length; i++){
-				coords[i] = coords[i] * imgScale;
+			if(imgScale < 1){
+				for (var i = 0; i < coords.length; i++){
+					coords[i] = coords[i] * imgScale;
+				}
 			}
 		});
 	}); //window.load()
