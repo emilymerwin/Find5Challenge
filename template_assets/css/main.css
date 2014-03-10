@@ -49,7 +49,6 @@ body {
 @media only screen and (max-width: 609px) {
 	#orgImg, #altImg { max-width: 46%; margin: 0 6px; }
 	#startBtn { float: right; }
-	.lotto{ float: left; }
 	#text p { margin-right: 0; }
 }
 
