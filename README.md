@@ -13,3 +13,6 @@
 - [ ] Would it be more efficient to create buttons or something from the hit areas and trigger the hit on click and miss when the background is clicked? Rather than check all 4 coordinates of each answer for every click...
 - [ ] Using canvas to display the results text is a huge hassle - we needed canvas for drawing the boxes (or did we?) but why not just drop a new HTML div on top?
 
+####Notes
+- Removed lottery sponsorship logo 3/10/14. Created branch with that layout in case it is sponsored again in the future
+
